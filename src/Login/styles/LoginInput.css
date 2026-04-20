@@ -1,0 +1,67 @@
+.input{
+    width: 92%;
+    border: none;
+    border-radius: 10px;
+    font-size: 200%;
+    margin-bottom: 5%;
+    margin-left: 3%;
+    background-color: rgb(221, 217, 217);
+}
+.lable{
+    color: grey;
+    font-size: 125%;
+    margin-left: 3.2%;
+}
+.Litle_lable{
+    display: flex;
+    margin-left: 3.2%;
+    margin-top: 5%;
+}
+.Lable_Login{
+    color: grey;
+    justify-content: left;
+}
+.Lable_Forgot_Password{
+    color: grey;
+    margin-left: 50%;
+    justify-content: right;
+}
+.button{
+    background-color: rgb(241, 204, 134);
+    font-size: 200%;
+    width: 70%;
+    border-radius: 10px;
+    align-self: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    color: black;
+}
+.Litle_button{
+     background: none;
+  border: none;
+  padding: 0;
+  margin-left: 1%;
+  font: inherit;
+  color: blue;
+  cursor: pointer;
+}
+.LoginInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 96.9%;
+    width: 52%;
+    background-color: rgb(248, 247, 247);
+    margin: 0.4%;
+    border-radius: 15px;
+    position: relative;
+}
+.top{
+    text-align: center;
+    color: black;
+    font-size: 220%;
+}

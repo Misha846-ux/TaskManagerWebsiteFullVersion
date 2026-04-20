@@ -1,0 +1,30 @@
+{
+    "users" : [
+  {
+    "name": "Danil Kutumov",
+    "password": "password123",
+    "email": "danil@gmail.com"
+  },
+  {
+    "name": "Bob",
+    "password": "qwerty456",
+    "email": "bob@gmail.com"
+  },
+  {
+    "name": "Charlie",
+    "password": "charlie789",
+    "email": "charlie@gmail.com"
+  },
+  {
+    "name": "Diana",
+    "password": "diana321",
+    "email": "diana@gmail.com"
+  },
+  {
+    "name": "Eve",
+    "password": "eve999",
+    "email": "eve@gmail.com"
+  }
+]
+
+}

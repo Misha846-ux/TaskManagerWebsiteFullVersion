@@ -1,0 +1,92 @@
+.TO_DOES_background{
+    height: 99%;
+    width: 49%;
+    background-color: white;
+    border-radius: 15px;
+    min-height: 230px;
+}
+.TO_DOES_content{
+    height: 80%;
+    width: auto;
+}
+.TO_DOES_Scroll_top{
+    display: flex;
+    font-size: 15px;
+    width: auto;
+    height: 10%;
+    margin: 1%;
+    color: gray;
+}
+.TO_DOES_Scroll_top_name{
+    margin-left: 40%;
+}
+.TO_DOES_top{
+    font-size: 25px;
+    width: auto;
+    height: 10%;
+    margin: 1%;
+}
+.TO_DOES_Project_content{
+    height: 70%;
+    width: auto;
+    background-color: rgb(238, 232, 232);
+    margin: 1%;
+    overflow-y: auto;
+    border-radius: 15px;
+}
+.TO_DOES_Project{
+    display: flex;
+    align-items: center;
+    height: 27%;
+    width: auto;
+    background-color: white;
+    margin: 1%;
+    border-radius: 15px;
+    text-decoration: none;
+    color: black;
+}
+.TO_DOES_Project_button{
+    height: 70%;
+    width: 9%;
+    margin-left: 2%;
+    border-radius: 25px;
+    background-image: url("/src/Project_Worked/photo/file_button.png");
+    border: none;
+    background-repeat: no-repeat;
+    background-size: contain; 
+    background-position: center;
+    background-color: rgb(255, 248, 232);    
+}
+.TO_DOES_Project_name{
+    margin-left: 2%;
+    width: 30%;
+    height: 70%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+.TO_DOES_Project_percent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    height: 70%;
+    width: 10%;
+    border-radius: 15px;
+    background-color: rgb(255, 248, 232);    
+}
+.TO_DOES_Project_percent_background_line{
+    height: 10%;
+    width: 35%;
+    margin-left: 5%;
+    background-color: rgb(238, 232, 232);
+    border-radius: 15px;
+}
+.TO_DOES_Project_percent_line{
+    height: 100%;
+    width: var(--percent);
+    background-color: rgb(248, 211, 143);
+    border-radius: 15px;
+}

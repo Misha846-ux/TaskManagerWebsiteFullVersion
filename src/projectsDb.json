@@ -1,0 +1,34 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Website Redesign",
+      "totalTasks": 12,
+      "tasksDone": 5
+    },
+    {
+      "id": 2,
+      "title": "Mobile App Development",
+      "totalTasks": 20,
+      "tasksDone": 7
+    },
+    {
+      "id": 3,
+      "title": "Marketing Campaign",
+      "totalTasks": 8,
+      "tasksDone": 8
+    },
+    {
+      "id": 4,
+      "title": "Internal Tool Upgrade",
+      "totalTasks": 15,
+      "tasksDone": 3
+    },
+    {
+      "id": 5,
+      "title": "Customer Feedback Analysis",
+      "totalTasks": 10,
+      "tasksDone": 6
+    }
+  ]
+}

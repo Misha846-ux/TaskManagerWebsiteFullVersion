@@ -1,0 +1,64 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Set up project repo",
+      "description_short": "Initialize repository and CI",
+      "description_full": "Create Git repository, add README, configure CI/CD pipeline, and set branch protection rules.",
+      "isCompleted": false,
+      "priority": "High",
+      "dueDate": "2026-01-22",
+      "parantId": 1
+    },
+    {
+      "id": "2",
+      "title": "Design task schema",
+      "description_short": "Define TaskType and JSON schema",
+      "description_full": "Draft TypeScript TaskType, update JSON server fixtures, and ensure compatibility with front-end forms and validation.",
+      "isCompleted": true,
+      "priority": "Medium",
+      "dueDate": "2026-01-18",
+      "parantId": 2
+    },
+    {
+      "id": "3",
+      "title": "Implement task list UI",
+      "description_short": "Build list and item components",
+      "description_full": "Implement TaskList and TaskItem components, wire up props, handle selection and basic styling for responsive layout.",
+      "isCompleted": false,
+      "priority": "High",
+      "dueDate": "2026-01-28",
+      "parantId": 3
+    },
+    {
+      "id": "4",
+      "title": "Add task creation form",
+      "description_short": "Form with validation",
+      "description_full": "Create task creation/edit form with client-side validation, priority selector, and due date picker integrated with state management.",
+      "isCompleted": false,
+      "priority": "Medium",
+      "dueDate": "2026-02-02",
+      "parantId": 4
+    },
+    {
+      "id": "5",
+      "title": "Write unit tests",
+      "description_short": "Tests for core components",
+      "description_full": "Add unit tests for TaskList, TaskItem, and form validation logic using the project's test framework; aim for good coverage.",
+      "isCompleted": false,
+      "priority": "Low",
+      "dueDate": "2026-02-10",
+      "parantId": 1
+    },
+    {
+      "id": "6",
+      "title": "Update documentation",
+      "description_short": "API and usage docs",
+      "description_full": "Update README and API docs to reflect current endpoints, example requests/responses, and developer setup steps.",
+      "isCompleted": true,
+      "priority": "Low",
+      "dueDate": "2026-01-20",
+      "parantId": 3
+    }
+  ]
+}

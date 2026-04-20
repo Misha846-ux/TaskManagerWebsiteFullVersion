@@ -1,0 +1,71 @@
+.Mambers_background{
+    height: 99%;
+    width: 49%;
+    background-color: white;
+    border-radius: 15px;
+    min-height: 230px;
+    margin-right: 2%;
+}
+.Members_top{
+    font-size: 25px;
+    width: auto;
+    height: 10%;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+}
+.Members_content{
+    height: 80%;
+    width: auto;
+}
+.Scroll_top{
+    font-size: 15px;
+    width: auto;
+    height: 10%;
+    margin: 1%;
+    color: gray;
+}
+.Scroll_content{
+    height: 70%;
+    width: auto;
+    background-color: rgb(238, 232, 232);
+    margin: 1%;
+    overflow-y: auto;
+    border-radius: 15px;
+}
+.Members_profile_name{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    width: 30%;
+    height: 50%;
+}
+.Members_profile_image{
+    margin: 1%;
+    height: 50%;
+    width: 6%;
+    border-radius: 25px;
+}
+.Members_profile{
+    height: 43%;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    margin: 1%;
+}
+.No_users{
+    height: 30%;
+    width: 30%;
+    font-size: 20px;
+    margin-left: 45%;
+}
+.User_create_button{
+  height: 100%;
+  width: 20%;
+  background-color: yellow;
+  font-size: 20px;
+  border-radius: 12px;
+  margin-left: 60%;
+}

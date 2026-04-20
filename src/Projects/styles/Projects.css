@@ -1,0 +1,84 @@
+.Projects{
+    height: 30%;
+    width: 98%;
+    margin-top: 1%;
+    margin-left: 1%;
+    display: flex;
+    justify-content: center;
+    min-height: 230px;
+}
+.Projects_background{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+.Projects_top{
+    font-size: 25px;
+    width: auto;
+    height: 10%;
+    margin: 1%;
+}
+.Project_content{
+    height: 70%;
+    width: auto;
+    background-color: rgb(238, 232, 232);
+    margin: 1%;
+    overflow-y: auto;
+    border-radius: 15px;
+}
+.Project{
+    display: flex;
+    align-items: center;
+    height: 25%;
+    width: auto;
+    background-color: white;
+    margin: 1%;
+    border-radius: 15px;
+    
+}
+.Project_button{
+    height: 80%;
+    width: 2.5%;
+    margin-left: 1%;
+    border-radius: 25px;
+    background-image: url("/src/Project_Worked/photo/file_button.png");
+    border: none;
+    background-repeat: no-repeat;
+    background-size: contain; 
+    background-position: center;
+    background-color: rgb(255, 248, 232);    
+}
+.Project_name{
+    margin-left: 1%;
+    width: 10%;
+    height: 70%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+.Project_percent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    height: 80%;
+    width: 5%;
+    border-radius: 15px;
+    background-color: rgb(255, 248, 232);    
+}
+.Project_percent_background_line{
+    height: 10%;
+    width: 69%;
+    margin-left: 5%;
+    background-color: rgb(238, 232, 232);
+    border-radius: 15px;
+}
+.Project_percent_line{
+    height: 100%;
+    width: var(--percent);
+    background-color: rgb(248, 211, 143);
+    border-radius: 15px;
+}

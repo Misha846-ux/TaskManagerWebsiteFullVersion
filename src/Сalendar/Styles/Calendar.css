@@ -1,0 +1,47 @@
+.calendar{
+    height: 99%;
+    width: 99%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;   
+    align-items: center;      
+      
+}
+
+.weeksTable{
+    height: 95%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 0.1px solid black;
+    border-top: none;
+}
+
+.weekRow {
+  display: flex;
+  height: 19%;
+  width: 100%;       
+    
+}
+
+.tableHeader {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    border: 0.1px solid black;
+    border-bottom: none;
+}
+
+.headerCell {
+    width: 14%;
+    text-align: center;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.headerCell, .dateCell {
+  font-size: clamp(1px, 2vw, 100%);
+  
+}

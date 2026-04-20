@@ -1,0 +1,52 @@
+.Task_Page{
+  height: 70%;
+    width: 98%;
+    display: flex;
+}
+.TaskPageContent_CalendarDate{
+    height: 98%;
+    width: 30%;
+}
+.Task_Calendar{
+    height: 30%; 
+    width: 100%;
+    margin-top: 40%;
+}
+.Task_Cards{
+    display: flex;
+    align-items: center;
+    height: 40%; 
+    width: 100%;
+    min-height: 350px;
+    margin-left: 15%;
+}
+.Card_CompletedTasks{
+    display: flex;
+    flex-direction: column;    
+    align-items: center;       
+    justify-content: center;   
+    text-align: center;
+    height: 50%;
+    width: 30%;
+    margin-right: 3%;
+}
+.Card_PendingTasks{
+    display: flex;
+    flex-direction: column;    
+    align-items: center;       
+    justify-content: center;   
+    text-align: center;
+    margin-left: 1%;
+    height: 50%;
+    width: 30%;
+}
+.Task_Add{
+    height: 97%;
+    width: 70%;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+

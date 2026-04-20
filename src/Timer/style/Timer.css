@@ -1,0 +1,9 @@
+.Timer{
+    height: 12%;
+    width: 99%;
+    min-height: 80px;
+}
+.Timer_text{
+    margin-left: 25px;
+    margin-bottom: 1%;
+}

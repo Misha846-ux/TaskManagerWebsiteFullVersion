@@ -1,0 +1,17 @@
+.MainPage {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 0 1fr;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.MainPage.open {
+    grid-template-columns: 20% 1fr;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+

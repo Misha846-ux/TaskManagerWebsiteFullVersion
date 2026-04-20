@@ -1,0 +1,41 @@
+.MainPage_rest {
+    background-color: rgb(238, 232, 232);
+    height: 100%;
+    border-radius: 15px;
+    
+}
+.Calendar-YourProject{
+    display: flex;
+    margin: auto 0;
+    height: 18%;
+    width: 98%;
+    margin-top: 1%;
+    margin-left: 1%;
+    min-height: 150px;
+}
+.calendarWorkBox{
+    height: 99%;
+    width: 20%;
+    margin-left: 10%;
+    display: flex;
+    
+}
+.BoxForCalendar{
+    height: 100%;
+    width: 70%;
+    
+}
+.Fake_calendar{
+    justify-self:flex-start;
+    height: 99%;
+    width: 30%;
+    background-color: white;
+  
+}
+.Members-To_Do{
+    display: flex;
+    align-items: center;
+    height: 30%;
+    width: 98%;
+    margin: 1%;
+}
