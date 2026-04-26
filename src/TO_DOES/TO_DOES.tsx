@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ProjectType } from "../utilities/Types/ProjectType";
 import "./styles/TO_DOES.css";
-import { GetProjects } from "../utilities/Methods/GetProjectsFunc";
+import { GetProjects } from "../utilities/Methods/ProjectMethods";
 const TO_DOES = () => {
     const [projects, SetProjects] = useState<ProjectType[]>([]);
     useEffect(()=>{

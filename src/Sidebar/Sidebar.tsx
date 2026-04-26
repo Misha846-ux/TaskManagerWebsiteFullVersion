@@ -15,7 +15,10 @@ export default function Sidebar() {
 useEffect(() => {
   fetch(`${API_URL}/Authorization/MyCompanies`, {
     method:"GET",
-    credentials: "include"
+    credentials: "include",
+     headers: {
+    Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+  }
   })
    .then(res => {
     if (!res.ok) {

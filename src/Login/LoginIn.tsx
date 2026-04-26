@@ -33,45 +33,70 @@ const LoginIn = () => {
             if (!response.ok) {
                 throw new Error();
             }
+            
+           const tokenResponse = await fetch(`${API_URL}/Authorization/Refresh`, {
+      method: "POST",
+      credentials: "include"
+    });
 
-            const companiesResponse = await fetch(`${API_URL}/Authorization/MyCompanies`,{
-                method: "GET",
-                credentials: "include"
-            });
+    const accessToken = await tokenResponse.text();
 
-            const companies = await companiesResponse.json();
+    if (!accessToken) {
+      throw new Error("No token");
+    }
 
-            if(!companiesResponse.ok){
-                throw new Error("Failed to get companies");
-            }
-            if(!companies.length){
-                alert("No companies");
-                return;
-            }
+    localStorage.setItem("accessToken", accessToken);
 
-            const firstCompany = companies[0];
 
-            const tokenResponse = await fetch(`${API_URL}/Authorization/Refresh?companyId=${firstCompany.id}`,{
-                method:"POST",
-                credentials: "include"
-            });
+    const companiesResponse = await fetch(`${API_URL}/Authorization/MyCompanies`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
 
-            const accessToken = await tokenResponse.text();
-            if (!accessToken) {
-                throw new Error("No token");
-            }
-            localStorage.setItem("isAuth", "true");
-            localStorage.setItem("accessToken", accessToken.toString());
-            localStorage.setItem("companyId", firstCompany.id.toString());
-            localStorage.setItem("user", JSON.stringify({
-                userName: user.name,
-                email: user.email
-            }));
-        
-            navigator(`/MainPage/MainContent/company/${firstCompany.id}`);
+    if (!companiesResponse.ok) {
+      throw new Error("Failed to get companies");
+    }
+
+    const companies = await companiesResponse.json();
+
+    if (!companies.length) {
+      alert("No companies");
+      return;
+    }
+
+    const firstCompany = companies[0];
+
+  
+    const companyTokenResponse = await fetch(
+      `${API_URL}/Authorization/Refresh?companyId=${firstCompany.id}`,
+      {
+        method: "POST",
+        credentials: "include"
+      }
+    );
+
+    const companyAccessToken = await companyTokenResponse.text();
+
+    if (!companyAccessToken) {
+      throw new Error("No company token");
+    }
+
+
+    localStorage.setItem("isAuth", "true");
+    localStorage.setItem("accessToken", companyAccessToken);
+    localStorage.setItem("companyId", firstCompany.id.toString());
+    localStorage.setItem("user", JSON.stringify({
+      userName: user.name,
+      email: user.email
+    }));
+
+
+    navigator(`/MainPage/MainContent/company/${firstCompany.id}`);
         } catch {
             alert("Incorrect login or password or email");
-            console.log(document.cookie)
         }
     };
      const OnClickBack= () => {

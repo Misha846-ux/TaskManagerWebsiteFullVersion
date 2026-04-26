@@ -9,8 +9,11 @@ import "./styles/MainPageContent.css"
 import Projects from '../../../Projects/Projects';
 import Members from '../../../Members/Members';
 import TO_DOES from '../../../TO_DOES/TO_DOES';
-export default function MainContent() {
+import { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom';
 
+export default function MainContent() {
+ 
   return (
     <div className="MainPage_rest">
         <div>
