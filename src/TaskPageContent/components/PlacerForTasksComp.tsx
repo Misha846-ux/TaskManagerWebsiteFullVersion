@@ -1,13 +1,14 @@
 import React from 'react'
-import type { TaskType } from '../types/TaskType';
+import type { TaskType } from '../../utilities/Types/TaskType';
 import TaskComponent from './TaskComponent';
 import { useLoaderData } from 'react-router-dom';
 import "../styles/Tasks.css";
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../../../redux/store';
+import type { RootState } from '../../redux/store';
+import type { TaskGetDto } from '../../utilities/DTOs/TaskDTOs/TaskGetDto';
 
 export default function PlacerForTasksComp() {
-  const tasksData = useLoaderData() as TaskType[];
+  const tasksData = useLoaderData() as TaskGetDto[];
   const query = useSelector((state: RootState) => state.search.query)
   if (!tasksData) return null;
 
@@ -19,7 +20,7 @@ export default function PlacerForTasksComp() {
                     }
                     else{
                         const regex = new RegExp(query, "i");
-                        return regex.test(item.title);
+                        return regex.test(item.taskName);
                     }
                    }).map((task) => (
         <TaskComponent key={task.id} {...task} />

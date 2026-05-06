@@ -5,7 +5,7 @@ import Timer from "../Timer/Timer";
 import Project_Worked from "../Project_Worked/Project_Worked";
 import MainContent from "./PageContent/MainContent/MainContent";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import TaskPageContent from "./PageContent/TaskPageContent/TaskPageContent";
+import TaskPageContent from "../TaskPageContent/TaskPageContent";
 import Sidebar from "../Sidebar/Sidebar";
 import { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -18,34 +18,58 @@ const MainPage: React.FC = () =>{
 
   const navigator = useNavigate();
 
+  const [companyId, setCompanyId] = useState<number | null>(null);
+
   useEffect(() => {
-  const refresh = async () => {
-    const storedCompanyId = localStorage.getItem("companyId");
+  const init = async () => {
+    let storedCompanyId = localStorage.getItem("companyId");
 
-    if (!storedCompanyId) return;
+    try {
+      if (!storedCompanyId) {
+        const companiesResponse = await fetch(
+          `${API_URL}/Authorization/MyCompanies`,
+          {
+            method: "GET",
+            credentials: "include"
+          }
+        );
 
-    const companyId = Number(storedCompanyId);
-    console.log(API_URL);
-    const response = await fetch(`${API_URL}/Authorization/Refresh?companyId=${companyId}`, {
-      method: "POST",
-      credentials: "include"
-    });
+        const companies = await companiesResponse.json();
 
-    if (!response.ok) {
-      console.error("Refresh failed");
-      return;
+        if (!companies.length) return;
+
+        storedCompanyId = companies[0].id.toString();
+
+        localStorage.setItem("companyId", storedCompanyId!);
+      }
+
+      const response = await fetch(
+        `${API_URL}/Authorization/Refresh?companyId=${storedCompanyId}`,
+        {
+          method: "POST",
+          credentials: "include"
+        }
+      );
+
+      if (!response.ok) {
+        localStorage.clear();
+        navigator("/");
+        return;
+      }
+
+      const newToken = await response.text();
+
+      localStorage.setItem("accessToken", newToken);
+
+      setCompanyId(Number(storedCompanyId));
+
+      navigator(`/MainPage/MainContent/company/${storedCompanyId}`);
+    } catch (error) {
+      console.error(error);
     }
-
-    const token = await response.text();
-
-    localStorage.setItem("accessToken", token);
-    localStorage.setItem("companyId", companyId.toString());
-
-    navigator(`/MainPage/MainContent/company/${companyId}`);
-    console.log(response);
   };
 
-  refresh();
+  init();
 }, []);
 
     return(

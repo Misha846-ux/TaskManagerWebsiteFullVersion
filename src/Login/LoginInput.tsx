@@ -48,7 +48,6 @@ const LoginInput = () =>{
     };
     const handleSubmit = (e:React.FormEvent) =>{
         e.preventDefault();
-        console.log(user);
     };
     return(
         <form className="LoginInput" onSubmit={handleSubmit}>

@@ -1,0 +1,81 @@
+{
+    "tasks": [
+  {
+    "id": 1,
+    "status": "In Progress",
+    "taskName": "Setup Database",
+    "description": "Initialize Postgres DB with initial schema",
+    "priority": "High",
+    "createdAt": "2026-04-20T08:00:00.000Z",
+    "deadline": "2026-04-22T17:00:00.000Z",
+    "projectId": 101,
+    "userId": 10
+  },
+  {
+    "id": 2,
+    "status": "Backlog",
+    "taskName": "API Documentation",
+    "description": "Create Swagger docs for v2",
+    "priority": "Medium",
+    "createdAt": "2026-04-20T10:00:00.000Z",
+    "deadline": "2026-04-30T17:00:00.000Z",
+    "projectId": 101,
+    "userId": 11
+  },
+  {
+    "id": 3,
+    "status": "Done",
+    "taskName": "Fix Login Bug",
+    "description": "Resolve race condition on login",
+    "priority": "High",
+    "createdAt": "2026-04-19T09:00:00.000Z",
+    "deadline": "2026-04-19T12:00:00.000Z",
+    "projectId": 102,
+    "userId": 10
+  },
+  {
+    "id": 4,
+    "status": "To Do",
+    "taskName": "Frontend Dashboard",
+    "description": "Implement main stats view",
+    "priority": "Low",
+    "createdAt": "2026-04-20T14:00:00.000Z",
+    "deadline": "2026-05-05T17:00:00.000Z",
+    "projectId": 101,
+    "userId": 12
+  },
+  {
+    "id": 5,
+    "status": "To Do",
+    "taskName": "Frontend Dashboard",
+    "description": "Implement main stats view",
+    "priority": "Low",
+    "createdAt": "2026-04-20T14:00:00.000Z",
+    "deadline": "2026-05-05T17:00:00.000Z",
+    "projectId": 101,
+    "userId": 12
+  },
+  {
+    "id": 6,
+    "status": "To Do",
+    "taskName": "Frontend Dashboard",
+    "description": "Implement main stats view",
+    "priority": "Low",
+    "createdAt": "2026-04-20T14:00:00.000Z",
+    "deadline": "2026-05-05T17:00:00.000Z",
+    "projectId": 101,
+    "userId": 12
+  },
+  {
+    "id": 7,
+    "status": "To Do",
+    "taskName": "Frontend Dashboard",
+    "description": "Implement main stats view",
+    "priority": "Low",
+    "createdAt": "2026-04-20T14:00:00.000Z",
+    "deadline": "2026-05-05T17:00:00.000Z",
+    "projectId": 101,
+    "userId": 12
+  }
+]
+}

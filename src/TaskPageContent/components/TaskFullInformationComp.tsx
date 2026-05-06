@@ -44,17 +44,6 @@ export default function TaskDetails() {
                 <strong>Full Information:</strong>
                 <p>{task.fullInformation ?? task.description_full ?? "No details"}</p>
             </div>
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={completed}
-                        onChange={toggleCompleted}
-                        disabled={saving}
-                    />{" "}
-                    Completed
-                </label>
-            </div>
         </div>
     );
 }

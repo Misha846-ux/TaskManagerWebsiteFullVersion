@@ -4,11 +4,15 @@ import "./styles/TO_DOES.css";
 import { GetProjects } from "../utilities/Methods/ProjectMethods";
 const TO_DOES = () => {
     const [projects, SetProjects] = useState<ProjectType[]>([]);
-    useEffect(()=>{
-        GetProjects().then((value) => {
-            SetProjects(value);
-        })
-    },[])    
+    useEffect(() => {
+   const companyId = localStorage.getItem("companyId");
+
+   if (!companyId) return;
+
+   GetProjects(Number(companyId)).then((value) => {
+      SetProjects(value);
+   });
+}, []);  
 
     return(
     <div className="TO_DOES_background">

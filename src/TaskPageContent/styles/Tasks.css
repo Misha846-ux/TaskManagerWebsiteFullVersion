@@ -1,0 +1,309 @@
+/* placer: two items per row, vertical scroll if needed */
+.placerForTasks,
+.placerfortasks,
+.place-for-tasks {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;                       /* horizontal & vertical gap */
+  padding: 12px;
+  max-height: 85vh;                /* show vertical scrollbar when needed */
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* ensure children keep their own .task-item styles but occupy half row */
+.placerForTasks > *,
+.placerfortasks > *,
+.place-for-tasks > * {
+  box-sizing: border-box;
+  flex: 0 0 calc(50% - 6px);       /* two per row; 6px = gap/2 */
+  max-width: calc(50% - 6px);
+  width: auto;
+}
+
+/* scrollbar (WebKit) */
+.placerForTasks::-webkit-scrollbar,
+.placerfortasks::-webkit-scrollbar,
+.place-for-tasks::-webkit-scrollbar { width: 10px; }
+.placerForTasks::-webkit-scrollbar-track,
+.placerfortasks::-webkit-scrollbar-track,
+.place-for-tasks::-webkit-scrollbar-track { background: transparent; }
+.placerForTasks::-webkit-scrollbar-thumb,
+.placerfortasks::-webkit-scrollbar-thumb,
+.place-for-tasks::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(251,146,60,0.16), rgba(251,146,60,0.26));
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* fallback for small screens — single column */
+@media (max-width: 640px) {
+  .placerForTasks > *,
+  .placerfortasks > *,
+  .place-for-tasks > * {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Theme variables */
+:root{
+  --card-bg: #f6a623;      /* warm orange */
+  --title-color: #0b0b0b;  /* nearly black */
+  --meta-color: #6b6b6b;   /* grey for short description */
+  --card-radius: 10px;
+  --card-padding: 12px 14px;
+  --card-width: 320px;     /* compact width */
+}
+
+/* Card */
+.task-item{
+  background: var(--card-bg);
+  color: var(--title-color);
+  width: var(--card-width);
+  max-width: 55%;
+  padding: var(--card-padding);
+  border-radius: var(--card-radius);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* small hover lift */
+.task-item:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+}
+
+/* Title */
+.task-title{
+  margin: 0;
+  font-size: 18px;         /* black, prominent */
+  font-weight: 700;
+  color: var(--title-color);
+  line-height: 1.1;
+  letter-spacing: -0.2px;
+}
+
+/* Short description / meta */
+.task-meta{
+  margin: 0;
+  font-size: 13px;
+  color: var(--meta-color);
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;   /* limit to 2 lines */
+  -webkit-box-orient: vertical;
+}
+
+/* Row for actions (View link etc.) */
+.row{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Nav link style */
+.row a{
+  color: var(--title-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.06);
+  transition: background .12s ease;
+}
+.row a:hover{
+  background: rgba(0,0,0,0.12);
+}
+
+/* Form row (checkbox + label) */
+.form-row{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--title-color);
+}
+
+/* Checkbox appearance - compact */
+.form-row input[type="checkbox"]{
+  width: 18px;
+  height: 18px;
+  accent-color: var(--title-color); /* modern browsers */
+  cursor: pointer;
+}
+
+/* Completed state */
+.task-completed{
+  opacity: 0.65;
+  filter: saturate(0.95);
+}
+
+/* Optional - make card smaller on very small screens */
+@media (max-width: 360px){
+  :root{ --card-width: calc(100% - 24px); }
+  .task-title{ font-size: 16px; }
+}
+
+
+
+
+/* TaskCreator component styles */
+:root{
+  --accent: #f6a623;
+  --accent-600: #f59e2a;
+  --bg: #ffffff;
+  --text: #0b0b0b;
+  --muted: #6b6b6b;
+  --danger: #E85A4F;
+  --radius: 10px;
+  --gap: 10px;
+  --input-bg: #fafafa;
+  --shadow: 0 6px 18px rgba(0,0,0,0.06);
+  --fw-sans: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* container */
+.task-creator{
+  width: 100%;
+  max-width: 750px;
+  background: rgba(255,255,255,0.02);
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+  display: grid;
+
+  font-family: var(--fw-sans);
+  color: var(--text);
+}
+
+/* error */
+.task-creator .error{
+  background: rgba(232,90,79,0.08);
+  border: 1px solid rgba(232,90,79,0.18);
+  color: var(--danger);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* label block */
+.task-creator label{
+  display: block;
+  width: 100%;
+}
+
+/* small label text above fields */
+.task-creator .label-text{
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* shared input styles (input, textarea, select) */
+.task-creator .input{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1px 1px;
+  font-size: 14px;
+  border: 1px solid rgba(11,11,11,0.08);
+  background: var(--input-bg);
+  border-radius: 8px;
+  outline: none;
+  color: var(--text);
+  transition: box-shadow .12s ease, border-color .12s ease, transform .08s ease;
+  resize: vertical;
+  min-height: 38px;
+}
+
+/* textarea specific */
+.task-creator textarea.input{
+  min-height: 50px;
+  height: 50px;
+  font-size: 13px;
+}
+
+/* focus */
+.task-creator .input:focus{
+  border-color: rgba(246,166,35,0.9);
+  box-shadow: 0 4px 14px rgba(246,166,35,0.12);
+}
+
+/* actions row */
+.creator-actions{
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--gap);
+  margin-top: 6px;
+}
+
+/* button base */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  transition: transform .06s ease, box-shadow .08s ease, opacity .12s ease;
+  box-shadow: none;
+}
+
+/* primary button */
+.btn--primary{
+  background: linear-gradient(180deg, var(--accent), var(--accent-600));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(246,166,35,0.12);
+}
+
+/* hover / active */
+.btn--primary:hover:not(:disabled){
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(246,166,35,0.14);
+}
+.btn:active:not(:disabled){
+  transform: translateY(0);
+}
+
+/* disabled state */
+.btn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* small responsive tweaks */
+@media (max-width: 560px){
+  .task-creator{
+    padding: 10px;
+    gap: 8px;
+  }
+  .creator-actions{
+    justify-content: stretch;
+  }
+  .creator-actions .btn{
+    width: 100%;
+  }
+}

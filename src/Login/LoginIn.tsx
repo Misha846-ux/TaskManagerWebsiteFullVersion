@@ -33,68 +33,55 @@ const LoginIn = () => {
             if (!response.ok) {
                 throw new Error();
             }
-            
-           const tokenResponse = await fetch(`${API_URL}/Authorization/Refresh`, {
-      method: "POST",
-      credentials: "include"
-    });
 
-    const accessToken = await tokenResponse.text();
+            const companiesResponse = await fetch(`${API_URL}/Authorization/MyCompanies`, {
+                method: "GET",
+                credentials: "include",
+            });
 
-    if (!accessToken) {
-      throw new Error("No token");
-    }
+            if (!companiesResponse.ok) {
+                throw new Error("Failed to get companies");
+            }
 
-    localStorage.setItem("accessToken", accessToken);
+            const companies = await companiesResponse.json();
 
+            if (!companies.length) {
+                alert("No companies");
+                return;
+            }
 
-    const companiesResponse = await fetch(`${API_URL}/Authorization/MyCompanies`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
+            const firstCompany = companies[0];
 
-    if (!companiesResponse.ok) {
-      throw new Error("Failed to get companies");
-    }
+            const companyTokenResponse = await fetch(
+                `${API_URL}/Authorization/Refresh?companyId=${firstCompany.id}`,
+                {
+                    method: "POST",
+                    credentials: "include",
+                }
+            );
 
-    const companies = await companiesResponse.json();
+            if (!companyTokenResponse.ok) {
+                throw new Error("Failed to refresh token");
+            }
 
-    if (!companies.length) {
-      alert("No companies");
-      return;
-    }
+            const companyAccessToken = await companyTokenResponse.text();
 
-    const firstCompany = companies[0];
+            if (!companyAccessToken) {
+                throw new Error("No company token");
+            }
 
-  
-    const companyTokenResponse = await fetch(
-      `${API_URL}/Authorization/Refresh?companyId=${firstCompany.id}`,
-      {
-        method: "POST",
-        credentials: "include"
-      }
-    );
+            localStorage.setItem("isAuth", "true");
+            localStorage.setItem("accessToken", companyAccessToken);
+            localStorage.setItem("companyId", firstCompany.id.toString());
+            localStorage.setItem(
+                "user",
+                JSON.stringify({
+                    userName: user.name,
+                    email: user.email,
+                })
+            );
 
-    const companyAccessToken = await companyTokenResponse.text();
-
-    if (!companyAccessToken) {
-      throw new Error("No company token");
-    }
-
-
-    localStorage.setItem("isAuth", "true");
-    localStorage.setItem("accessToken", companyAccessToken);
-    localStorage.setItem("companyId", firstCompany.id.toString());
-    localStorage.setItem("user", JSON.stringify({
-      userName: user.name,
-      email: user.email
-    }));
-
-
-    navigator(`/MainPage/MainContent/company/${firstCompany.id}`);
+            navigator(`/MainPage/MainContent/company/${firstCompany.id}`);
         } catch {
             alert("Incorrect login or password or email");
         }

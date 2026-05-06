@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useRevalidator } from 'react-router-dom'
 import "../styles/Tasks.css";
 
-const SERVER_BASE = import.meta.env.VITE_Tasks_SERVER_URL
+// const SERVER_BASE = import.meta.env.VITE_API_URL
 
 export default function TaskCreatorComp() {
   const revalidator = useRevalidator()
   const [title, setTitle] = useState('')
-  const [descriptionShort, setDescriptionShort] = useState('')
+  const [projectName, setProjectName] = useState('')
   const [descriptionFull, setDescriptionFull] = useState('')
   const [priority, setPriority] = useState<'Low' | 'Medium' | 'High'>('Low')
   const [dueDate, setDueDate] = useState('') // YYYY-MM-DD
@@ -22,22 +22,30 @@ export default function TaskCreatorComp() {
       return
     }
 
-    const payload = {
-      id: Date.now(),
-      title: title.trim(),
-      description_short: descriptionShort.trim(),
-      description_full: descriptionFull.trim(),
-      isCompleted: false,
-      priority,
-      dueDate: dueDate || null
-    }
-
     setSubmitting(true)
     try {
-      const url = `${SERVER_BASE.replace(/\/$/, '')}`
+
+      const projectId = await fetch(`${import.meta.env.VITE_API_URL}/Projects/by-name/${projectName.trim()}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
+          'Content-Type': 'application/json'
+        }
+      }).then((res) => res.json()).then((project) => project?.id).catch(() => null);
+
+      const payload = {
+      taskName: title.trim(),
+      description: descriptionFull.trim(),
+      priority,
+      deadline: dueDate || null,
+      projectId: projectId,
+    }
+
+      const url = `${import.meta.env.VITE_API_URL}/Task/AddTask`
       const res = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Authorization':`Bearer ${localStorage.getItem("accessToken")}`,
+          'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
       if (!res.ok) {
@@ -49,7 +57,7 @@ export default function TaskCreatorComp() {
       try { revalidator.revalidate() } catch {}
       // clear form on success
       setTitle('')
-      setDescriptionShort('')
+      setProjectName('')
       setDescriptionFull('')
       setPriority('Low')
       setDueDate('')
@@ -76,17 +84,17 @@ export default function TaskCreatorComp() {
       </label>
 
       <label>
-        <div className="label-text">Short description</div>
+        <div className="label-text">Project</div>
         <input
           className="input"
           type="text"
-          value={descriptionShort}
-          onChange={(e) => setDescriptionShort(e.target.value)}
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)}
         />
       </label>
 
       <label>
-        <div className="label-text">Full description</div>
+        <div className="label-text">Description</div>
         <textarea
           className="input"
           value={descriptionFull}

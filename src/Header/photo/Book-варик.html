@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://localhost:5173/books?page=122 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="./Book-варик_files/client"></script>
+
+    
+    <link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book-варик</title>
+  <style type="text/css" data-vite-dev-id="C:/Users/rysya/Desktop/bookvar-main/src/index.css"></style><style type="text/css" data-vite-dev-id="C:/Users/rysya/Desktop/bookvar-main/src/components/pages/About.module.css">._wrapper_lb80j_1 {
+  display: flex;
+  justify-content: center;
+  padding: 60px 24px;
+  background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+}
+
+._content_lb80j_8 {
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+._content_lb80j_8:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #0f172a;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+strong {
+  color: #2563eb;
+}
+
+._button_lb80j_40 {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+._button_lb80j_40:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  ._content_lb80j_8 {
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  ._button_lb80j_40 {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+</style><style type="text/css" data-vite-dev-id="C:/Users/rysya/Desktop/bookvar-main/src/components/book/BookList.module.css">/* GRID */
+
+._grid_zdhk3_3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  padding: 20px 0;
+}
+
+/* EMPTY */
+
+._empty_zdhk3_12 {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #64748b;
+}
+
+/* CARD */
+
+._card_zdhk3_21 {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+._card_zdhk3_21:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+}
+
+/* IMAGE */
+
+._image_zdhk3_40 {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+/* TEXT */
+
+._title_zdhk3_50 {
+  margin: 6px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+._author_zdhk3_56 {
+  font-size: 14px;
+  color: #64748b;
+}
+
+._description_zdhk3_61 {
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #475569;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* META */
+
+._meta_zdhk3_75 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #64748b;
+  margin-top: auto;
+}
+
+._isbn_zdhk3_83 {
+  opacity: 0.8;
+}
+
+._inStock_zdhk3_87 {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+._outStock_zdhk3_92 {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* FOOTER */
+
+._footer_zdhk3_99 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+}
+
+._price_zdhk3_106 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+/* BUTTON */
+
+._card_zdhk3_21 button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+._card_zdhk3_21 button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+._card_zdhk3_21 button:disabled {
+  background: #cbd5f5;
+  cursor: not-allowed;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Users/rysya/Desktop/bookvar-main/src/App.module.css">/* =====================
+   GLOBAL RESET
+===================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: #f5f7fb;
+}
+
+/* =====================
+   HEADER + LOGO
+===================== */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 24px clamp(20px, 6vw, 80px);
+  background: linear-gradient(135deg, #79afd6, #96b2c7);
+  color: white;
+}
+
+header p {
+  margin: 0;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* LOGO */
+
+._logo_m2yxg_38 {
+  width: clamp(120px, 18vw, 200px);
+  aspect-ratio: 3 / 1;
+
+  background: url("/logo.png") center / contain no-repeat;
+
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+._logo_m2yxg_38:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* =====================
+   NAV MENU
+===================== */
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+
+  background: #020617;
+  padding: 14px 0;
+}
+
+nav a {
+  color: #cbd5f5;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #3b82f6;
+  transition: width 0.25s ease;
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* =====================
+   MAIN CONTAINER
+===================== */
+
+._container_m2yxg_101 {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 24px;
+}
+
+._container_m2yxg_101 h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+/* =====================
+   BOOKS GRID
+===================== */
+
+._books_m2yxg_116 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+/* =====================
+   BOOK CARD
+===================== */
+
+._book_m2yxg_116 {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+._book_m2yxg_116:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+}
+
+._book_m2yxg_116 img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+._book_m2yxg_116 h3 {
+  margin: 6px 0;
+  font-size: 18px;
+}
+
+._book_m2yxg_116 p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* =====================
+   PRICE + BUTTON
+===================== */
+
+._price_m2yxg_166 {
+  margin-top: auto;
+  font-size: 18px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+._book_m2yxg_116 button {
+  margin-top: 14px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+._book_m2yxg_116 button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* =====================
+   FOOTER
+===================== */
+
+footer {
+  margin-top: 70px;
+  padding: 24px;
+  background: linear-gradient(135deg, #a9def8, #0e448a);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+</style></head>
+  <body>
+    <div id="root"><div><header><p>Ваш улюблений магазин книг</p><div class="_logo_m2yxg_38"></div></header><nav style="display: flex; gap: 20px; justify-content: center;"><a class="" href="http://localhost:5173/" data-discover="true">Home</a><a class="" href="http://localhost:5173/about" data-discover="true">About</a><a aria-current="page" class="active" href="http://localhost:5173/books" data-discover="true">Books</a><a class="" href="http://localhost:5173/book/10" data-discover="true">Book params</a><a class="" href="http://localhost:5173/book?title=test&amp;author=bob" data-discover="true">Book query params</a></nav><input type="text" value="" fdprocessedid="an8fg7"><div class="_grid_zdhk3_3"></div><div style="display: flex; justify-content: center; gap: 8px; margin-top: 30px;"><button fdprocessedid="1oqvt">←</button><button fdprocessedid="yhtdg">→</button></div><footer><p>© 2026 Book-варик. Усі права захищені.</p></footer></div></div>
+    <script type="module" src="./Book-варик_files/main.tsx"></script>
+  
+
+<span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>

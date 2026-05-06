@@ -6,7 +6,7 @@ const LoginMain = () =>{
     const navigator = useNavigate()
     useEffect(() => {
     try {
-        const user = JSON.parse(localStorage.getItem("user") || "null");
+        const user = JSON.parse(localStorage.getItem("isAuth") || "null");
         if (user) {
             navigator("/MainPage/MainContent");
         }

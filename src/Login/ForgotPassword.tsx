@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/ForgotPassword.css"
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const ForgotPassword = () => {
   const handleGetToken = async () => {
     try {
       const response = await fetch(
-        `https://localhost:5001/ForgotPassword/GetToken${email}`,
+        `${API_URL}/Authorization/ForgotPassword/GetToken${email}`,
         {
           method: "PUT"
         }
@@ -34,7 +35,7 @@ const ForgotPassword = () => {
   const handleLoginWithToken = async () => {
     try {
       const response = await fetch(
-        "https://localhost:5001/ForgotPassword/LoginWithToken",
+        `${API_URL}/Authorization/ForgotPassword/LoginWithToken`,
         {
           method: "POST",
           headers: {

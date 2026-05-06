@@ -89,4 +89,55 @@
     display: flex;
     align-items: center;
 }
+.Change_box{
+  width:25%;
+  height:30%;
+  background-color: rgb(221, 217, 217);
+  border-radius: 20px;
+  position: absolute;
+  right: 15%;
+  top: 8%;
 
+  z-index: 9999;
+}
+.Change_top{
+    width: 95%;
+    height: 20%;
+    font-size: 25px;
+    margin-left: 6%;
+}
+.No_changes{
+    width: 100%;
+    height: 100%;
+    margin-top: 50%;
+    margin-left: 50%;
+}
+.Change_context{
+    width: 100%;
+    height: 80%;
+    overflow-y: auto;
+}
+.change_message_box{
+    width: 90%;
+    height: 40%;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 5%;
+    border-radius: 20px;
+    background-color: white;
+    border: 2px solid black;
+}
+.change_message{
+    width: 80%;
+    height: 20%;
+    font-size: 25px;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+.change_time{
+    width: 80%;
+    height: 20%;
+    margin-top: 1%;
+    font-size: 20px;
+    margin-left: 1%;
+}
