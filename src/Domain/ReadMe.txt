@@ -1,0 +1,1 @@
+This directory contains all types that are used in the project.
