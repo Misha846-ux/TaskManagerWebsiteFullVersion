@@ -4,7 +4,7 @@ export interface UserGet {
     Email: string,
     GlobalRole: string,
     PassToIcon: string,
-    CreatedAt: string,
+    CreatedAt: Date,
     CompaniesId: number[],
     Settings: string
 }

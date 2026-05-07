@@ -1,9 +1,9 @@
-import type { UserUpdate, AvatarPut } from "../Domain/User";
-import { getAccessToken } from "./LocalStorageMethods";
+import type { UserUpdate, AvatarPut, UserGet } from "../../Domain/User";
+import { getAccessToken } from "../LocalStorageMethods";
 
 const API_URL = import.meta.env.VITE_API_URL + "/User";
 
-export async function getAllUsers(): Promise<Response> {
+export async function getAllUsers(): Promise<UserGet[]> {
     const response = await fetch(`${API_URL}`, {
         method: "GET",
         headers: {
@@ -11,10 +11,14 @@ export async function getAllUsers(): Promise<Response> {
         },
         credentials: "include",
     })
-    return response
+
+    let data: UserGet[] = await response.json();
+    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+
+    return data
 }
 
-export async function getUsersPaginated(count: number, side: number): Promise<Response> {
+export async function getUsersPaginated(count: number, side: number): Promise<UserGet[]> {
     const response = await fetch(
         `${API_URL}/Filtred?count=${count}&side=${side}`,
         {
@@ -26,10 +30,14 @@ export async function getUsersPaginated(count: number, side: number): Promise<Re
         }
     )
 
-    return response
+    let data: UserGet[] = await response.json();
+    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+
+    return data
 }
 
-export async function searchUsersPaginated(name: string, count: number, side: number): Promise<Response> {
+export async function searchUsersByNamePaginated
+(name: string, count: number, side: number): Promise<UserGet[]> {
     const response = await fetch(
         `${API_URL}/Filtred/SearchByName?name=${encodeURIComponent(name)}&count=${count}&side=${side}`,
         {
@@ -41,10 +49,13 @@ export async function searchUsersPaginated(name: string, count: number, side: nu
         }
     )
 
-    return response
+    let data: UserGet[] = await response.json();
+    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+
+    return data
 }
 
-export async function searchUsersByName(name: string): Promise<Response> {
+export async function searchUsersByName(name: string): Promise<UserGet[]> {
     const response = await fetch(`${API_URL}/SearchByName/${encodeURIComponent(name)}`,
         {
             method: "GET",
@@ -55,10 +66,13 @@ export async function searchUsersByName(name: string): Promise<Response> {
         }
     )
 
-    return response
+    let data: UserGet[] = await response.json();
+    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+
+    return data
 }
 
-export async function getUserById(id: number): Promise<Response> {
+export async function getUserById(id: number): Promise<UserGet> {
     const response = await fetch(`${API_URL}/ById/${id}`, {
         method: "GET",
         headers: {
@@ -67,10 +81,13 @@ export async function getUserById(id: number): Promise<Response> {
         credentials: "include",
     })
 
-    return response
+    let data: UserGet = await response.json();
+    data.CreatedAt = new Date(data.CreatedAt)
+
+    return data
 }
 
-export async function getUserByEmail(email: string): Promise<Response> {
+export async function getUserByEmail(email: string): Promise<UserGet> {
     const response = await fetch(`${API_URL}/ByEmail/${encodeURIComponent(email)}`,
         {
             method: "GET",
@@ -81,10 +98,12 @@ export async function getUserByEmail(email: string): Promise<Response> {
         }
     )
 
-    return response
+    let data: UserGet = await response.json();
+
+    return data
 }
 
-export async function getMe(): Promise<Response> {
+export async function getMe(): Promise<UserGet> {
     const response = await fetch(`${API_URL}/Get/Myself`, {
         method: "GET",
         headers: {
@@ -93,7 +112,10 @@ export async function getMe(): Promise<Response> {
         credentials: "include",
     })
 
-    return response
+    let data: UserGet = await response.json();
+    data.CreatedAt = new Date(data.CreatedAt)
+
+    return data
 }
 
 export async function getUserAvatar(id: number): Promise<Response> {
@@ -109,8 +131,8 @@ export async function getUserAvatar(id: number): Promise<Response> {
     //return response.blob()
 }
 
-export async function deleteUserByAdmin(id: number): Promise<Response> {
-    const response = await fetch(`${API_URL}/DeleteForAdmin${id}`, {
+export async function deleteUserByAdmin(id: number): Promise<number> {
+    const response = await fetch(`${API_URL}/DeleteForAdmin/${id}`, {
         method: "DELETE",
         headers: {
             Authorization: `Bearer ${getAccessToken()}`,
@@ -118,10 +140,12 @@ export async function deleteUserByAdmin(id: number): Promise<Response> {
         credentials: "include",
     })
 
-    return response
+    let data: number = await response.json()
+
+    return data
 }
 
-export async function deleteMe(): Promise<Response> {
+export async function deleteMe() {
     const response = await fetch(`${API_URL}/Delete`, {
         method: "DELETE",
         headers: {
@@ -129,11 +153,9 @@ export async function deleteMe(): Promise<Response> {
         },
         credentials: "include",
     })
-
-    return response
 }
 
-export async function updateUserByAdmin(user: UserUpdate): Promise<Response> {
+export async function updateUserByAdmin(user: UserUpdate): Promise<UserGet> {
     const response = await fetch(`${API_URL}/UpdateForAdmin`, {
         method: "PUT",
         headers: {
@@ -144,10 +166,13 @@ export async function updateUserByAdmin(user: UserUpdate): Promise<Response> {
         body: JSON.stringify(user),
     })
 
-    return response
+    let data: UserGet = await response.json();
+    data.CreatedAt = new Date(data.CreatedAt)
+
+    return data
 }
 
-export async function updateMe(user: UserUpdate): Promise<Response> {
+export async function updateMe(user: UserUpdate): Promise<UserGet> {
     const response = await fetch(`${API_URL}/Update`, {
         method: "PUT",
         headers: {
@@ -157,11 +182,14 @@ export async function updateMe(user: UserUpdate): Promise<Response> {
         credentials: "include",
         body: JSON.stringify(user),
     })
-
-    return response
+    
+    let data: UserGet = await response.json();
+    data.CreatedAt = new Date(data.CreatedAt)
+    
+    return data
 }
 
-export async function updateAvatar(avatar: AvatarPut): Promise<Response> {
+export async function updateAvatar(avatar: AvatarPut){
     const formData = new FormData()
     formData.append("UserAvata", avatar.UserAvata)
 
@@ -173,6 +201,4 @@ export async function updateAvatar(avatar: AvatarPut): Promise<Response> {
         credentials: "include",
         body: formData,
     })
-
-    return response
 }

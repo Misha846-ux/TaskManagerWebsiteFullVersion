@@ -1,10 +1,11 @@
-import type {UserPost, UserLogin} from "../Domain/User"
+import type {UserPost, UserLogin} from "../../Domain/User"
+import type { CompanyGet } from "../../Domain/Company";
 
 const API_URL = import.meta.env.VITE_API_URL + "/Authorization";
 
 
 
-export async function signUp(user: UserPost): Promise<Response> {
+export async function signUp(user: UserPost) {
     const response = await fetch(`${API_URL}/SingUp`, {
         method: "POST",
         headers: {
@@ -12,11 +13,9 @@ export async function signUp(user: UserPost): Promise<Response> {
         },
         body: JSON.stringify(user),
     });
-
-    return response;
 }
 
-export async function login(user: UserLogin): Promise<Response> {
+export async function login(user: UserLogin) {
     const response = await fetch(`${API_URL}/LogIn`, {
         method: "POST",
         headers: {
@@ -25,11 +24,9 @@ export async function login(user: UserLogin): Promise<Response> {
         credentials: "include", 
         body: JSON.stringify(user),
     });
-
-    return response;
 }
 
-export async function refreshAccessToken(companyId: number): Promise<Response> {
+export async function refreshAccessToken(companyId: number): Promise<string> {
     const response = await fetch(`${API_URL}/Refresh`, {
         method: "POST",
         headers: {
@@ -38,18 +35,20 @@ export async function refreshAccessToken(companyId: number): Promise<Response> {
         credentials: "include", 
         body: JSON.stringify(companyId),
     });
-    return response;
+
+    let data: string = await response.json()
+
+    return data;
 }
 
-export async function forgotPassword(email: string): Promise<Response> {
+export async function forgotPassword(email: string) {
     const response = await fetch(`${API_URL}/ForgotPassword/GetToken${encodeURIComponent(email)}`, {
         method: "PUT",
         credentials: "include"
     });
-    return response;
 }
 
-export async function loginWithRecoveryToken(user: UserLogin): Promise<Response> {
+export async function loginWithRecoveryToken(user: UserLogin) {
     const response = await fetch(`${API_URL}/ForgotPassword/LoginWithToken`, {
         method: "POST",
         headers: {
@@ -58,16 +57,17 @@ export async function loginWithRecoveryToken(user: UserLogin): Promise<Response>
         credentials: "include", 
         body: JSON.stringify(user),
     });
-
-    return response;
 }
 
-export async function getMyCompanies(): Promise<Response> {
+export async function getMyCompanies(): Promise<CompanyGet[]> {
     const response = await fetch(`${API_URL}/MyCompanies`, {
         method: "GET",
         credentials: "include", 
     });
 
-    return response;
+    let data: CompanyGet[] = await response.json()
+    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+
+    return data;
 }
 
