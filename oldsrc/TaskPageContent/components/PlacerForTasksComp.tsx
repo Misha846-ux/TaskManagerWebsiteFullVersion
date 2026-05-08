@@ -4,7 +4,7 @@ import TaskComponent from './TaskComponent';
 import { useLoaderData } from 'react-router-dom';
 import "../styles/Tasks.css";
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../redux/store';
+import type { RootState } from '../../../oldsrc/redux/store';
 import type { TaskGetDto } from '../../utilities/DTOs/TaskDTOs/TaskGetDto';
 
 export default function PlacerForTasksComp() {

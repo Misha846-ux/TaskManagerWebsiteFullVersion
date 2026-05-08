@@ -7,7 +7,7 @@ import "./styles/MainPageContent.css"
 import TasksCard from '../../../Сalendar/TasksCard/TasksCard';
 import "./styles/MainPageContent.css"
 import Projects from '../../../Projects/Projects';
-import Members from '../../../Members/Members';
+import Members from '../../../../oldsrc/Members/Members';
 import TO_DOES from '../../../TO_DOES/TO_DOES';
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';

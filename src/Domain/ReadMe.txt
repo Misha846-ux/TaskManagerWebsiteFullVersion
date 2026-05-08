@@ -1,1 +1,1 @@
-This directory contains all types that are used in the project.
+This directory contains all data types (except those used to describe props) used in the project.
