@@ -1,66 +1,50 @@
-import React from 'react'
-import { createBrowserRouter, useNavigate } from 'react-router-dom'
-import MainPage from './Pages/MainPage'
-import MainContent from './Pages/PageContent/MainContent/MainContent'
-import LoginMain from './Login/LoginMain'
-import TaskPageContent from './TaskPageContent/TaskPageContent'
+import { createBrowserRouter } from 'react-router-dom'
 import Error404 from '../oldsrc/Errors/Error404'
-import Project_Worked from '../oldsrc/Project_Worked/Project_Worked'
-import getTasks from '../oldsrc/utilities/Methods/TasksMethods'
 import ForgotPassword from './app/Pages/LoginPage/Components/ForgotPassword'
 import ProtectedRoute from './Protected_Router'
-import Members from '../oldsrc/Members/Members'
-//npx json-server projectsDb.json
-//npx json-server usersDb.json --port 3001
-//npx json-server tasks-server.json --port 3002
+import LoginPage from './app/Pages/LoginPage/LoginPage'
+import SingUp from './app/Pages/LoginPage/Components/SingUp'
+import GlobalPage from './app/GlobalPage'
+import MainPage from './app/Pages/MainPage/MainPage'
+import ProjectPage from './app/Pages/ProjectPage/ProjectPage'
+import LoginIn from './app/Pages/LoginPage/Components/LoginIn'
 export const router = createBrowserRouter([
     {
         element:<ProtectedRoute/>,
         children: [
             {
             path: "/MainPage",
-            element: <MainPage />,
+            element: <GlobalPage/>,
             children: [
                 {
                     path: "MainContent/",
-                    element: <MainContent/>,
-                    children: [
-                    {
-                        path: "company/:companyId",
-                        element: <Project_Worked/>,
-                    },
-                    {
-                        path: "",
-                        element: <Project_Worked/>,
-                    },
-                    {
-                        path: ""
-                    }
-                    ]
+                    element: <MainPage/>
                 },
                 {
-                path: "TaskContent",
-                element: <TaskPageContent/>,
-                hydrateFallbackElement: <div>Loading...</div>,
-                // loader: async () => {
-                //     return await getTasks()
-                // }
+                path: "ProjectPage/:id",
+                element: <ProjectPage/>,
                 },
-                {
-                path: "Members/:id",
-                element: <Members/>
-                }
             ]
         }
     ]
     },
     {
         path: "/",
-        element: <LoginMain/>,
-    },
-    {
-        path: "/ForgotPassword",
-        element: <ForgotPassword/>
+        element: <LoginPage/>,
+        children:[
+            {
+                path: "/",
+                element: <LoginIn/>
+            },
+            {
+                path: "ForgotPassword",
+                element: <ForgotPassword/>
+            },
+            {
+                path: "SingUp",
+                element: <SingUp/>
+            }
+        ]
     },
     {
         path: "*",

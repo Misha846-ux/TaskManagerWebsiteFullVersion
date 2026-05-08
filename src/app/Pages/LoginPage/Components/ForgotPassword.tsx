@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../../Styles/LoginPage/ForgotPassword.css"
+import "../../../Styles/LoginPage/ForgotPassword.css";
 import UserDataInput from "./UserDataInput";
 import type { UserLogin } from "../../../../Domain/User";
-import 
-{ forgotPassword, loginWithRecoveryToken, 
-  getMyCompanies, refreshAccessToken } 
-from "../../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods";
-import { changeIsAuthorize, setAccessToken, setCompanyId } 
-from "../../../../Infrastructure/LocalStorageMethods";
-import type { CompanyGet } from "../../../../Domain/Company";
+import {
+  forgotPassword,
+  loginWithRecoveryToken,
+  getMyCompanies,
+  refreshAccessToken,
+} from "../../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods";
+import { changeIsAuthorize, setAccessToken, setCompanyId } from "../../../../Infrastructure/LocalStorageMethods";
 
 
 const ForgotPassword = () => {
@@ -29,16 +29,18 @@ const ForgotPassword = () => {
     }
   };
 
-  async function onSecondStepClick(value: UserLogin): Promise<void> {
+  function onSecondStepClick(value: UserLogin): void {
     try{
-      if(await loginWithRecoveryToken(value)){
-        let data: CompanyGet[] = await getMyCompanies();
-        let accesToken: string = await refreshAccessToken(data[0].Id);
-        setAccessToken(accesToken);
-        setCompanyId(data[0].Id);
-        changeIsAuthorize();
-        navigate("/MainPage/MainContent")
-      }
+      loginWithRecoveryToken(value).then(() => {
+        getMyCompanies().then((data) => {
+          refreshAccessToken(data[0].Id).then((accesToken) => {
+            setAccessToken(accesToken);
+            setCompanyId(data[0].Id);
+            changeIsAuthorize();
+            navigate("/MainPage/MainContent")
+          });
+        });
+      });
     }
     catch (e){
       alert(e);

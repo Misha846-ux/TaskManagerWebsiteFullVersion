@@ -1,15 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import "../../../Styles/LoginPage/LoginInput.css"
+import "../../../Styles/LoginPage/SingUp.css";
 import type { UserLogin, UserPost } from "../../../../Domain/User";
-import type { CompanyGet } from "../../../../Domain/Company";
 import UserDataInput from "./UserDataInput";
 import { login, getMyCompanies, refreshAccessToken, signUp } from "../../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods";
 import { changeIsAuthorize, setAccessToken, setCompanyId } from "../../../../Infrastructure/LocalStorageMethods";
 
-const SingUp = async () => {
+const SingUp = () => {
     const navigator = useNavigate();
 
-    async function OnFormClick(value: UserLogin): Promise<void>{
+    function OnFormClick(value: UserLogin): void{
         try{
             let userCreate: UserPost = {
                 UserName: value.UserName,
@@ -18,21 +17,18 @@ const SingUp = async () => {
                 Settings: ""
             }
 
-            if(!await signUp(userCreate)){
-                throw Error("Auth Error");
-            }
-            if(await login(value)){
-                let data: CompanyGet[] = await getMyCompanies();
-                let accesToken: string = await refreshAccessToken(data[0].Id);
-                setAccessToken(accesToken);
-                setCompanyId(data[0].Id);
-                changeIsAuthorize();
-
-                navigator("/MainPage/MainContent")
-            }
-            else{
-                throw Error("Auth Error");
-            }
+            signUp(userCreate).then(() => {
+                login(value).then(() => {
+                    getMyCompanies().then((data) => {
+                        refreshAccessToken(data[0].Id).then((accesToken) => {
+                            setAccessToken(accesToken);
+                            setCompanyId(data[0].Id);
+                            changeIsAuthorize();
+                            navigator("/MainPage/MainContent")
+                        });
+                    });
+                });
+            });
         }
         catch{
             alert("Oh no error" )
@@ -40,7 +36,7 @@ const SingUp = async () => {
     }
 
   return (
-    <div className="LoginIn_body"> 
+    <div className="SingUp_body"> 
         <UserDataInput title="SingUp" onFormButtonClick={OnFormClick}></UserDataInput>
     </div>
   );

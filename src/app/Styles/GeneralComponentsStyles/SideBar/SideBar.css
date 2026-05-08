@@ -1,0 +1,35 @@
+.MainPage.open {
+  grid-template-columns: 300px 1fr;
+}
+
+.sidebar {
+  overflow: hidden;
+  background: white;
+  color: #222;
+  min-height: 900px;
+}
+
+.sidebar_top {
+  text-align: center;
+}
+
+.Logo_div {
+  height: 10%;
+  width: 30%;
+  margin-left: 5%;
+}
+
+.Logo_img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.LogOut_button {
+  width: 50%;
+  height: 5%;
+  margin-left: 10%;
+  border-radius: 15%;
+  background-color: rgb(180, 175, 175);
+  font-size: 100%;
+}

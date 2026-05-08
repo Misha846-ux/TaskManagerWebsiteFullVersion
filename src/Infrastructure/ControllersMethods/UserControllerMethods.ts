@@ -118,7 +118,7 @@ export async function getMe(): Promise<UserGet> {
     return data
 }
 
-export async function getUserAvatar(id: number): Promise<Response> {
+export async function getUserAvatar(id: number): Promise<Blob> {
     const response = await fetch(`${API_URL}/Get/Avatar/${id}`, {
         method: "GET",
         headers: {
@@ -127,8 +127,11 @@ export async function getUserAvatar(id: number): Promise<Response> {
         credentials: "include",
     })
 
-    return response
-    //return response.blob()
+    if (!response.ok) {
+        throw new Error(`Failed to load user avatar: ${response.status}`);
+    }
+
+    return await response.blob();
 }
 
 export async function deleteUserByAdmin(id: number): Promise<number> {

@@ -1,13 +1,13 @@
-import "../../../Styles/LoginPage/LoginInput.css"
+import "../../../Styles/LoginPage/UserDataInput.css";
 import type { UserLogin } from "../../../../Domain/User";
 
 type Props = {
     title: string;
-    onFormButtonClick: (value: UserLogin) => Promise<void>;
+    onFormButtonClick: (value: UserLogin) => void;
 };
 
 
-const UserDataInput = async ({title, onFormButtonClick}: Props ) =>{
+const UserDataInput = ({title, onFormButtonClick}: Props ) =>{
 
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();

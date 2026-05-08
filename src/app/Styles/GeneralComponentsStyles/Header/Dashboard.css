@@ -1,0 +1,19 @@
+.dash_button{
+    width: 4%;
+    height: 85%;
+    background-image: url("/src/Header/photo/sidebar_button.png");
+    background-size: contain;
+    background-position: center;
+    border: none;
+    background-repeat: no-repeat;
+    object-fit: contain;
+    background-color: white;
+}
+.dashboard{
+    font-size: 20px;
+    margin: 15px;
+    margin-left: 30px;
+    margin-right: 27%;
+    text-decoration: none;
+    color: black;
+}
