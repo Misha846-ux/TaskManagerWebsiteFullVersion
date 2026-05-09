@@ -1,7 +1,9 @@
 .Header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     min-height: 70px;
     max-height: 70px;
+    padding: 0 16px;
 }

@@ -42,60 +42,72 @@
     overflow-y: auto;
     border-radius: 15px;
 }
-.Project{
+.TO_DOES_Project{
     display: flex;
     align-items: center;
-    height: 25%;
-    width: auto;
+    height: 60px;
+    width: 100%;
     background-color: white;
     margin: 1%;
     border-radius: 15px;
-    
+    padding: 10px;
+    box-sizing: border-box;
 }
-.Project_button{
-    height: 80%;
-    width: 2.5%;
-    margin-left: 1%;
+.TO_DOES_Project_button{
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
     border-radius: 25px;
     background-image: url("/src/Project_Worked/photo/file_button.png");
     border: none;
     background-repeat: no-repeat;
-    background-size: contain; 
+    background-size: contain;
     background-position: center;
-    background-color: rgb(255, 248, 232);    
+    background-color: rgb(255, 248, 232);
+    flex-shrink: 0;
 }
-.Project_name{
-    margin-left: 1%;
-    width: 10%;
-    height: 70%;
+.TO_DOES_Project_name{
+    margin-right: 10px;
+    flex: 1;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
     display: flex;
     align-items: center;
+    font-weight: bold;
 }
-.Project_percent{
+.TO_DOES_Project_percent{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 5%;
-    height: 80%;
-    width: 5%;
+    margin-right: 10px;
+    height: 40px;
+    width: 50px;
     border-radius: 15px;
-    background-color: rgb(255, 248, 232);    
+    background-color: rgb(255, 248, 232);
+    flex-shrink: 0;
 }
-.Project_percent_background_line{
-    height: 10%;
-    width: 69%;
-    margin-left: 5%;
+.TO_DOES_Project_percent_background_line{
+    height: 10px;
+    width: 100px;
+    margin-right: 10px;
     background-color: rgb(238, 232, 232);
     border-radius: 15px;
+    flex-shrink: 0;
+    position: relative;
 }
-.Project_percent_line{
+.TO_DOES_Project_percent_line{
     height: 100%;
     width: var(--percent);
     background-color: rgb(248, 211, 143);
     border-radius: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.actions-menu {
+    margin-left: auto;
+    flex-shrink: 0;
 }
 .No_projects{
     height: 30%;
@@ -103,46 +115,10 @@
     font-size: 20px;
     margin-left: 45%;
 }
-.project_create_box{
-  width:25%;
-  height:15%;
-  background-color: rgb(221, 217, 217);
-  border-radius: 20px;
-  position: absolute;
-  right: 0;
-  top: 50%;
-
-  z-index: 9999;
-}
-.project_create_context{
-  margin: 1%;
-  height: 60%;
-  width: 100%;
-}
-.project_insert{
-  height: 50%;
-  width: 100%;
-}
-.project_top{
-  height: 20%;
-  width: 30%;
-  font-size: 20px;
-}
-.project_input{
-    width: 92%;
-    border: none;
-    border-radius: 10px;
-    font-size: 200%;
-    margin-bottom: 5%;
-    margin-left: 3%;
-    background-color: white;
-}
-.project_create{
-  height: 30%;
-  width: 40%;
-  background-color: rgb(255, 192, 45);
-  font-size: 20px;
-  border-radius: 12px;
-  margin-left: 30%;
-  margin-bottom: 10%;
+.no_items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 20px;
 }

@@ -22,7 +22,7 @@
     height: 60%;
     width: 25%;
     margin-left: 50%;
-    background-image: url("/src/Project_Worked/photo/file_button.png");
+    background-image: url("../../../Images/file_button.png");
     background-size: contain; 
     background-position: center;
     border: none;

@@ -1,7 +1,7 @@
 .dash_button{
     width: 4%;
     height: 85%;
-    background-image: url("/src/Header/photo/sidebar_button.png");
+    background-image: url("../../../../Images/sidebar_button.png");
     background-size: contain;
     background-position: center;
     border: none;

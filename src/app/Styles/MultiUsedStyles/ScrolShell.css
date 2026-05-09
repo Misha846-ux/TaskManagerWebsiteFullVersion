@@ -1,0 +1,44 @@
+.ScrolShell{
+    height: 30%;
+    width: 98%;
+    margin-top: 1%;
+    margin-left: 1%;
+    display: flex;
+    justify-content: center;
+    min-height: 230px;
+}
+.ScrolShell_background{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+.ScrolShell_top{
+    font-size: 25px;
+    width: auto;
+    height: 10%;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.ScrolShell_create_button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 10%;
+  background-color: rgb(255, 192, 45);
+  border: 2px solid black;
+  font-size: 20px;
+  border-radius: 12px;
+  margin-left: 80%;
+}
+.ScrolShell_content{
+    height: 70%;
+    width: auto;
+    background-color: rgb(238, 232, 232);
+    margin: 1%;
+    overflow-y: auto;
+    border-radius: 15px;
+}

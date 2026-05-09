@@ -1,4 +1,4 @@
-import "./style/Project_Worked.css";
+import "../../../Styles/MainPage/Project_Worked.css";
 const Project_Worked:React.FC = () =>{
     return(
         <form className="Project_Worked">

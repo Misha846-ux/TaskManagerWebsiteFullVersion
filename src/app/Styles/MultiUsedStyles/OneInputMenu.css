@@ -1,0 +1,103 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-title {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  z-index: 1001;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.create-form {
+  width: 100%;
+  height: auto;
+  background-color: rgb(221, 217, 217);
+  border-radius: 20px;
+  position: relative;
+}
+
+.create-context {
+  margin: 1%;
+  height: auto;
+  width: 100%;
+}
+
+.create-insert {
+  height: auto;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.create-label {
+  display: block;
+  height: 20%;
+  width: 30%;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.create-input {
+  width: 92%;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 10px;
+  margin-left: 3%;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.create-button {
+  height: 40px;
+  width: 40%;
+  background-color: rgb(255, 192, 45);
+  font-size: 18px;
+  border-radius: 12px;
+  margin-left: 30%;
+  margin-bottom: 10%;
+  border: none;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: rgb(255, 180, 30);
+}
