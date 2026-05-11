@@ -50,7 +50,7 @@ const UserDataInput = ({title, onFormButtonClick}: Props ) =>{
             <label className="lable">Password</label>
             <input
             className="input"
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
             required
