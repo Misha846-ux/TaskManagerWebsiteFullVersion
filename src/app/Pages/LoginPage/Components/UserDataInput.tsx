@@ -14,9 +14,9 @@ const UserDataInput = ({title, onFormButtonClick}: Props ) =>{
 
         const formData = new FormData(e.currentTarget);
         const user: UserLogin = {
-            UserName: formData.get("UserName") as string,
-            Email: formData.get("Email") as string,
-            Password: formData.get("Password") as string,
+            UserName: formData.get("userName") as string,
+            Email: formData.get("email") as string,
+            Password: formData.get("password") as string,
         };
 
         if (!user.UserName || !user.Email || !user.Password) {
