@@ -1,24 +1,48 @@
-import type { CompanyGet } from '../../../../Domain/Company';
+import type { CompanyGet, CompanyPost } from '../../../../Domain/Company';
 import { useEffect, useState } from 'react';
 import ActionsMenu from '../../../Pages/MultiUsedParts/ActionsMenu';
 import '../../../Styles/GeneralComponentsStyles/SideBar/CompaniesBox.css';
-import { getMyCompanies } from '../../../../Infrastructure/ControllersMethods/CompanyControllerMethods';
+import { addCompany, getMyCompanies } from '../../../../Infrastructure/ControllersMethods/CompanyControllerMethods';
 import { setAccessToken, setCompanyId } from '../../../../Infrastructure/LocalStorageMethods';
 import { useNavigate } from 'react-router-dom';
 import { refreshAccessToken } from '../../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods';
+import OneInputMenu from '../../../Pages/MultiUsedParts/OneInputMenu';
 
 
 const CompaniesBox = () => {
   const [companies, setCompanies] = useState<CompanyGet[]>([]);
+  const [isCreateMenuOpen, setIsCreateMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     getMyCompanies().then((data) => setCompanies(data));
-    
   }, []);
+
+  function CreateCompany(companyName: string){
+    setIsCreateMenuOpen(false);
+
+    let newCompany: CompanyPost = {
+      Name: companyName,
+      Description: "No description"
+    }
+
+    addCompany(newCompany).then(()=>{
+      getMyCompanies().then((data) => setCompanies(data));
+    })
+
+  }
 
   return (
     <>
-      <button className="Company_create_button">
+      <OneInputMenu isOpen={isCreateMenuOpen}
+            onClose={() => setIsCreateMenuOpen(false)}
+            onSubmit={CreateCompany}
+            title="Create Company"
+            placeholder="Enter company name"
+            buttonText="create"
+            label="Company Name"
+            />
+      <button className="Company_create_button" 
+        onClick={() => setIsCreateMenuOpen(true)}>
         Create +
       </button>
       <div className="Companies_list">
