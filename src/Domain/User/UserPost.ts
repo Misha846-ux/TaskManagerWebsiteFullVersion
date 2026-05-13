@@ -1,6 +1,6 @@
 export interface UserPost {
-    UserName: string,
-    Email: string,
-    Password: string,
-    Settings: string   
+    userName: string,
+    email: string,
+    password: string,
+    settings: string   
 }

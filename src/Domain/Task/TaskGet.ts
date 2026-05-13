@@ -1,11 +1,11 @@
 export interface TaskGet {
-    Id: number,
-    Status: string,
-    TaskName: string,
-    Description: string,
-    Priority: string,
-    CreatedAt: Date,
-    DeadLine: Date,
-    ProjectId: number,
-    UserId: number
+    id: number,
+    status: string,
+    taskName: string,
+    description: string,
+    priority: string,
+    createdAt: Date,
+    deadLine: Date,
+    projectId: number,
+    userId: number
 }

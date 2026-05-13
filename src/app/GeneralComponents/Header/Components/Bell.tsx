@@ -43,7 +43,7 @@ const ChangeBox: React.FC<ChangeBoxProps> = ({ changes, onClose }) => (
             {changes.length === 0 ? (
                 <div className="No_changes">No changes</div>
             ) : (
-                changes.map((item) => <ChangeMessageBox item={item} key={item.Id} />)
+                changes.map((item) => <ChangeMessageBox item={item} key={item.id} />)
             )}
         </div>
     </div>
@@ -55,7 +55,7 @@ type ChangeItemProps = {
 
 const ChangeMessageBox: React.FC<ChangeItemProps> = ({ item }) => (
     <div className="change_message_box">
-        <div className="change_message">{item.Message}</div>
-        <div className="change_time">{item.CreatedAt}</div>
+        <div className="change_message">{item.message}</div>
+        <div className="change_time">{item.createdAt}</div>
     </div>
 );

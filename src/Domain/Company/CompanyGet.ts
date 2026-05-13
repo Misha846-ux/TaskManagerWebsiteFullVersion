@@ -1,8 +1,8 @@
 export interface CompanyGet {
-    Id: number,
-    Name: string,
-    Description: string,
-    CreatedAt: Date,
-    ProjectsId: number[],
-    EmploeesId: number[]
+    id: number,
+    name: string,
+    description: string,
+    createdAt: Date,
+    projectsId: number[],
+    emploeesId: number[]
 }

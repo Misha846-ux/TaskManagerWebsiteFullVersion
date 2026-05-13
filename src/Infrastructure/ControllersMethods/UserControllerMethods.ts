@@ -13,7 +13,7 @@ export async function getAllUsers(): Promise<UserGet[]> {
     })
 
     let data: UserGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -31,7 +31,7 @@ export async function getUsersPaginated(count: number, side: number): Promise<Us
     )
 
     let data: UserGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -50,7 +50,7 @@ export async function searchUsersByNamePaginated
     )
 
     let data: UserGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -67,7 +67,7 @@ export async function searchUsersByName(name: string): Promise<UserGet[]> {
     )
 
     let data: UserGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -82,7 +82,7 @@ export async function getUserById(id: number): Promise<UserGet> {
     })
 
     let data: UserGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt)
+    data.createdAt = new Date(data.createdAt)
 
     return data
 }
@@ -113,7 +113,7 @@ export async function getMe(): Promise<UserGet> {
     })
 
     let data: UserGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt)
+    data.createdAt = new Date(data.createdAt)
 
     return data
 }
@@ -170,7 +170,7 @@ export async function updateUserByAdmin(user: UserUpdate): Promise<UserGet> {
     })
 
     let data: UserGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt)
+    data.createdAt = new Date(data.createdAt)
 
     return data
 }
@@ -187,14 +187,14 @@ export async function updateMe(user: UserUpdate): Promise<UserGet> {
     })
     
     let data: UserGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt)
+    data.createdAt = new Date(data.createdAt)
     
     return data
 }
 
 export async function updateAvatar(avatar: AvatarPut){
     const formData = new FormData()
-    formData.append("UserAvata", avatar.UserAvata)
+    formData.append("userAvata", avatar.userAvata)
 
     const response = await fetch(`${API_URL}/Update/UserAvatar`, {
         method: "PUT",

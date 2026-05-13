@@ -1,10 +1,10 @@
 export interface UserGet {
-    Id: number,
-    UserName: string,
-    Email: string,
-    GlobalRole: string,
-    PassToIcon: string,
-    CreatedAt: Date,
-    CompaniesId: number[],
-    Settings: string
+    id: number,
+    userName: string,
+    email: string,
+    globalRole: string,
+    passToIcon: string,
+    createdAt: Date,
+    companiesId: number[],
+    settings: string
 }

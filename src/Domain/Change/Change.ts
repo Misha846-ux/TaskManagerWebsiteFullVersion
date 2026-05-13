@@ -1,8 +1,8 @@
 export interface ChangeType {
-    Id: number,
-    Table?: number,
-    EntityId?: number,
-    ChangeType?: number,
-    CreatedAt: string,
-    Message: string
+    id: number,
+    table?: number,
+    entityId?: number,
+    changeType?: number,
+    createdAt: string,
+    message: string
 }

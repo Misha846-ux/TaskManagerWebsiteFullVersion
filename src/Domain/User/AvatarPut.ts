@@ -1,3 +1,3 @@
 export interface AvatarPut {
-    UserAvata: File
+    userAvata: File
 }

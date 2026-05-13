@@ -1,7 +1,7 @@
 export interface TaskPost {
-    TaskName: string,
-    Description: string,
-    Priority: string,
-    DeadLine: string,
-    ProjectId: number
+    taskName: string,
+    description: string,
+    priority: string,
+    deadLine: string,
+    projectId: number
 }

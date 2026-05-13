@@ -47,9 +47,9 @@ export async function refreshAccessToken(companyId: number): Promise<string> {
         body: JSON.stringify(companyId),
     });
 
-    let data: string = await response.json()
+    const data = await response.json()
 
-    return data;
+    return data.accessToken;
 }
 
 export async function forgotPassword(email: string) {
@@ -82,7 +82,7 @@ export async function getMyCompanies(): Promise<CompanyGet[]> {
     });
 
     let data: CompanyGet[] = await response.json()
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data;
 }

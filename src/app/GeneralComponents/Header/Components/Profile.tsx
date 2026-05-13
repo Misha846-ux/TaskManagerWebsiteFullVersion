@@ -19,7 +19,7 @@ const Profile = () => {
                 setUser(data);
 
                 try {
-                    const avatarBlob = await getUserAvatar(data.Id);
+                    const avatarBlob = await getUserAvatar(data.id);
                     if (!active) return;
                     setImg(URL.createObjectURL(avatarBlob));
                 } catch {
@@ -41,7 +41,7 @@ const Profile = () => {
     return (
         <div className="profile">
             <div className="profile_info">
-                <b className="profile_name">{user?.UserName}</b>
+                <b className="profile_name">{user?.userName}</b>
             </div>
             <img className="profile_image" src={img}/>
         </div>

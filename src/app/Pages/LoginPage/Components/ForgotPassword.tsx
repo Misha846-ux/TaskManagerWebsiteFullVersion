@@ -33,9 +33,9 @@ const ForgotPassword = () => {
     try{
       loginWithRecoveryToken(value).then(() => {
         getMyCompanies().then((data) => {
-          refreshAccessToken(data[0].Id).then((accesToken) => {
+          refreshAccessToken(data[0].id).then((accesToken) => {
             setAccessToken(accesToken);
-            setCompanyId(data[0].Id);
+            setCompanyId(data[0].id);
             changeIsAuthorize();
             navigate("/MainPage/MainContent")
           });

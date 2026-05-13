@@ -15,7 +15,7 @@ export async function getAllCompanies(): Promise<CompanyGet[]> {
     })
 
     let data: CompanyGet[] = await response.json()
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -33,7 +33,7 @@ export async function getCompaniesPaginated(count: number, side: number): Promis
     )
 
     let data: CompanyGet[] = await response.json()
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -49,7 +49,7 @@ export async function getMyCompanies(): Promise<CompanyGet[]> {
     })
 
     let data: CompanyGet[] = await response.json()
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -67,7 +67,7 @@ export async function getMyCompaniesPaginated(count: number, side: number): Prom
     )
 
     let data: CompanyGet[] = await response.json()
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt))
+    data.map(d => d.createdAt = new Date(d.createdAt))
 
     return data
 }
@@ -83,7 +83,7 @@ export async function getCompanyById(id: number): Promise<CompanyGet> {
     })
 
     let data: CompanyGet = await response.json()
-    data.CreatedAt = new Date(data.CreatedAt)
+    data.createdAt = new Date(data.createdAt)
 
     return data
 }
@@ -99,7 +99,7 @@ export async function getMyCompanyById(id: number): Promise<CompanyGet> {
     })
 
     let data: CompanyGet = await response.json()
-    data.CreatedAt = new Date(data.CreatedAt)
+    data.createdAt = new Date(data.createdAt)
 
     return data
 }

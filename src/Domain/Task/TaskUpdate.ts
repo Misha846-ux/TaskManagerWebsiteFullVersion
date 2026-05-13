@@ -1,9 +1,9 @@
 export interface TaskUpdate {
-    Id: number,
-    TaskName?: string,
-    Description?: string,
-    Status?: string,
-    Priority?: string,
-    DeadLine?: string,
-    UserId?: string
+    id: number,
+    taskName?: string,
+    description?: string,
+    status?: string,
+    priority?: string,
+    deadLine?: string,
+    userId?: string
 }

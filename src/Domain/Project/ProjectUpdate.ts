@@ -1,4 +1,4 @@
 export interface ProjectUpdate {
-    Id: number,
-    Title: string
+    id: number,
+    title: string
 }

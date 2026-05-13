@@ -1,6 +1,6 @@
 export interface CompanyOfUserUpdate {
-    Id: number,
-    CompanyId?: number,
-    UserId?: number,
-    CompanyRole?: number
+    id: number,
+    companyId?: number,
+    userId?: number,
+    companyRole?: number
 }

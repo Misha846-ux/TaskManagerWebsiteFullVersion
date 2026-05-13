@@ -1,18 +1,24 @@
 import ScrolShell from "../../MultiUsedParts/ScrolShell"
 import MemberAddMenu from "./MemberAddMenu.tsx";
 import type { UserGet } from "../../../../Domain/User";
-import { getUserAvatar } from "../../../../Infrastructure/ControllersMethods/UserControllerMethods";
+import { getUserAvatar, getUserById } from "../../../../Infrastructure/ControllersMethods/UserControllerMethods";
 import defaultAvatar from "../../../../Images/profile_image.jpeg";
 import { useEffect, useState } from "react";
-import { GetCompanyUsers } from "../../../../../oldsrc/utilities/Methods/CompanyMethods.ts";
 import { getCompanyId } from "../../../../Infrastructure/LocalStorageMethods.ts";
+import { getCompanyUsers } from "../../../../Infrastructure/ControllersMethods/CompanyControllerMethods.ts";
 
 const MembersBox = () => {
     const [users, setUsers] = useState<UserGet[]>([]);
     const [isCreateMenuOpen, setIsCreateMenuOpen] = useState<boolean>(false);
 
     useEffect(() => {
-        GetCompanyUsers(getCompanyId()).then(data => setUsers(data));
+        getCompanyUsers(getCompanyId()).then((data) => {
+          data.map(d => {
+            getUserById(d.id).then(user => {
+              setUsers(prev => [...prev, user]);
+            });
+          })
+        });
     },[]);
 
     return (
@@ -35,7 +41,7 @@ const MembersBox = () => {
                 {users.length === 0 || users === undefined || null ?
                     <div className="no_items">No members</div>
                     :
-                    users.map(user => <MemberCell key={user.Id} user={user} />)
+                    users.map(user => <MemberCell key={user.id} user={user} />)
                 }
             </ScrolShell>
         </>
@@ -53,16 +59,16 @@ const MemberCell = ({ user }: MemberCellProps) => {
 
   const [profileImg, setProfileImg] = useState<string>(defaultAvatar);
   useEffect(() => {
-    if(user.PassToIcon !== undefined || null || "") {
-      getUserAvatar(user.Id).then(img => setProfileImg(URL.createObjectURL(img)));
+    if(user.passToIcon !== undefined || null || "") {
+      getUserAvatar(user.id).then(img => setProfileImg(URL.createObjectURL(img)));
     }
   },[])
 
   return (
-    <div className="Members_profile" key={user.Id}>
+    <div className="Members_profile" key={user.id}>
       <img className="Members_profile_image" src={profileImg} />
       <div className="Members_profile_name">
-        {user.UserName}
+        {user.userName}
       </div>
     </div>
   )

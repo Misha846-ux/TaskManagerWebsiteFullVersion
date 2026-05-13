@@ -1,4 +1,4 @@
 export interface ProjectPost {
-    Title: string,
-    CompanyId: number
+    title: string,
+    companyId: number
 }

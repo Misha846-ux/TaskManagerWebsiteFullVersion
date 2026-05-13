@@ -15,7 +15,7 @@ export async function getAllProjects(): Promise<ProjectGet[]> {
     })
 
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -33,7 +33,7 @@ export async function getProjectsPaginated(count: number, side: number): Promise
     )
 
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -49,7 +49,7 @@ export async function getProjectById(id: number): Promise<ProjectGet> {
     })
 
     let data: ProjectGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt);
+    data.createdAt = new Date(data.createdAt);
 
     return data;
 }
@@ -67,7 +67,7 @@ export async function getProjectsByName(name: string): Promise<ProjectGet[]> {
     )
     
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -83,7 +83,7 @@ export async function getMyProjectById(projectId: number): Promise<ProjectGet> {
     })
 
     let data: ProjectGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt);
+    data.createdAt = new Date(data.createdAt);
 
     return data;
 }
@@ -100,7 +100,7 @@ export async function getMyProjectsByName(name: string): Promise<ProjectGet[]> {
     )
 
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -118,7 +118,7 @@ export async function getProjectsByCompanyId(companyId: number): Promise<Project
     )
 
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -137,7 +137,7 @@ export async function getProjectsByCompanyPaginated(
     )
 
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -153,7 +153,7 @@ export async function getMyProjects(): Promise<ProjectGet[]> {
     })
 
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -171,7 +171,7 @@ export async function getMyProjectsPaginated(count: number, side: number): Promi
     )
 
     let data: ProjectGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }
@@ -188,7 +188,7 @@ export async function getProjectUsers(projectId: number): Promise<UserGet[]> {
     )
 
     let data: UserGet[] = await response.json();
-    data.map(d => d.CreatedAt = new Date(d.CreatedAt));
+    data.map(d => d.createdAt = new Date(d.createdAt));
 
     return data;
 }

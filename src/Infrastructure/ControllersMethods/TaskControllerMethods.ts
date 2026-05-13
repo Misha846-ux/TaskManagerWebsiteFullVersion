@@ -18,8 +18,8 @@ export async function getAllTasksAdmin(): Promise<TaskGet[]> {
 
     let data: TaskGet[] = await response.json();
     data.map(d => {
-        d.CreatedAt = new Date(d.CreatedAt);
-        d.DeadLine = new Date(d.DeadLine);
+        d.createdAt = new Date(d.createdAt);
+        d.deadLine = new Date(d.deadLine);
     })
 
     return data;
@@ -38,8 +38,8 @@ export async function getAllTasksPaginated(count: number, side: number): Promise
 
     let data: TaskGet[] = await response.json();
     data.map(d => {
-        d.CreatedAt = new Date(d.CreatedAt);
-        d.DeadLine = new Date(d.DeadLine);
+        d.createdAt = new Date(d.createdAt);
+        d.deadLine = new Date(d.deadLine);
     })
 
     return data;
@@ -60,8 +60,8 @@ export async function getTasksByProjectPaginated(
 
     let data: TaskGet[] = await response.json();
     data.map(d => {
-        d.CreatedAt = new Date(d.CreatedAt);
-        d.DeadLine = new Date(d.DeadLine);
+        d.createdAt = new Date(d.createdAt);
+        d.deadLine = new Date(d.deadLine);
     })
 
     return data;
@@ -83,8 +83,8 @@ export async function getTasksByNamePaginated(
 
     let data: TaskGet[] = await response.json();
     data.map(d => {
-        d.CreatedAt = new Date(d.CreatedAt);
-        d.DeadLine = new Date(d.DeadLine);
+        d.createdAt = new Date(d.createdAt);
+        d.deadLine = new Date(d.deadLine);
     })
 
     return data;
@@ -102,8 +102,8 @@ export async function getTaskByIdAdmin(id: number): Promise<TaskGet> {
     )
 
     let data: TaskGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt);
-    data.DeadLine = new Date(data.DeadLine);
+    data.createdAt = new Date(data.createdAt);
+    data.deadLine = new Date(data.deadLine);
 
     return data;
 }
@@ -122,8 +122,8 @@ export async function getTasksByName(name: string, projectId: number): Promise<T
 
     let data: TaskGet[] = await response.json();
     data.map(d => {
-        d.CreatedAt = new Date(d.CreatedAt);
-        d.DeadLine = new Date(d.DeadLine);
+        d.createdAt = new Date(d.createdAt);
+        d.deadLine = new Date(d.deadLine);
     })
 
     return data;
@@ -142,8 +142,8 @@ export async function getTasksByDeadline(date: string, projectId: number): Promi
 
     let data: TaskGet[] = await response.json();
     data.map(d => {
-        d.CreatedAt = new Date(d.CreatedAt);
-        d.DeadLine = new Date(d.DeadLine);
+        d.createdAt = new Date(d.createdAt);
+        d.deadLine = new Date(d.deadLine);
     })
 
     return data;
@@ -162,8 +162,8 @@ export async function getTasksByStatus(status: string, projectId: number): Promi
 
     let data: TaskGet[] = await response.json();
     data.map(d => {
-        d.CreatedAt = new Date(d.CreatedAt);
-        d.DeadLine = new Date(d.DeadLine);
+        d.createdAt = new Date(d.createdAt);
+        d.deadLine = new Date(d.deadLine);
     })
 
     return data;
@@ -201,8 +201,8 @@ export async function updateTaskAdmin(id: number, dto: TaskUpdate): Promise<Task
     )
 
     let data: TaskGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt);
-    data.DeadLine = new Date(data.DeadLine);
+    data.createdAt = new Date(data.createdAt);
+    data.deadLine = new Date(data.deadLine);
 
     return data;
 }
@@ -222,8 +222,8 @@ export async function updateTaskUser(id: number, dto: TaskUpdate): Promise<TaskG
     )
 
     let data: TaskGet = await response.json();
-    data.CreatedAt = new Date(data.CreatedAt);
-    data.DeadLine = new Date(data.DeadLine);
+    data.createdAt = new Date(data.createdAt);
+    data.deadLine = new Date(data.deadLine);
     
     return data;
 }

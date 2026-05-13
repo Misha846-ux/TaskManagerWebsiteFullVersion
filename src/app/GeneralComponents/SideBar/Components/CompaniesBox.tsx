@@ -53,7 +53,7 @@ const CompaniesBox = () => {
         ) : (
           companies.map((company) => (
             <CompanyCard
-              key={company.Id}
+              key={company.id}
               company={company}
             />
           ))
@@ -81,10 +81,10 @@ const CompanyCard = ({company}: CompanyCardProps) => {
     }
 
     return (
-        <div key={company.Id} className="Company" style={{ position: 'relative' }}>
+        <div key={company.id} className="Company" style={{ position: 'relative' }}>
             <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
                 <ActionsMenu
-                    entityId={company.Id}
+                    entityId={company.id}
                     onDelete={(id: string | number) => console.log('delete', id)}
                     onUpdate={(id: string | number) => console.log('update', id)}
                 />
@@ -92,9 +92,9 @@ const CompanyCard = ({company}: CompanyCardProps) => {
             <div className="Company_top">Company name</div> 
             <div className="Company_profile">
                 <div className="Company_name">
-                    <b>{company.Name}</b>
+                    <b>{company.name}</b>
                 </div>
-                <div className="Company_img" onClick={() => onCompanyClick(company.Id)}>
+                <div className="Company_img" onClick={() => onCompanyClick(company.id)}>
                     <img className="comp_img" src="/company_img.png" alt="Company" />
                 </div>
             </div>

@@ -1,6 +1,6 @@
 export interface CompanyUserGet {
-    Id: number,
-    CompanyId?: number,
-    UserId?: number,
-    CompanyRole?: string
+    id: number,
+    companyId?: number,
+    userId?: number,
+    companyRole?: string
 }

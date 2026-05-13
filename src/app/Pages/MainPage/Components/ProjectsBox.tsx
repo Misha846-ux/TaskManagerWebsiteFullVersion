@@ -31,7 +31,7 @@ const ProjectsBox = () => {
             onCreateButtonClicked={() => setIsCreateMenuOpen(true)}>
                 {projects?.length === 0 || projects === undefined || projects === null ? 
                 (<div className="no_items">No projects</div>) : 
-                (projects?.map(project => <ProjectCard key={project.Id} project={project} />))}
+                (projects?.map(project => <ProjectCard key={project.id} project={project} />))}
             </ScrolShell>
         </>
         
@@ -53,7 +53,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 type="button"
                 onClick={() => {}}
             />
-            <div className="TO_DOES_Project_name"><b>{project.Title}</b></div>
+            <div className="TO_DOES_Project_name"><b>{project.title}</b></div>
             <div className="TO_DOES_Project_percent">{percent}%</div>
             <div className="TO_DOES_Project_percent_background_line">
                 <div
@@ -62,7 +62,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 ></div>
             </div>
             <ActionsMenu
-                entityId={project.Id}
+                entityId={project.id}
                 onDelete={() => {}}
                 onUpdate={() => {}}
                 onManageMembers={() => {}}
