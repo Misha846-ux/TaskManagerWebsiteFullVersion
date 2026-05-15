@@ -13,6 +13,10 @@
     object-fit: contain;
     background-color: white;
 }
+.message_button:hover{
+    border: 2px solid black;
+    border-radius: 15px;
+}
 .Change_box{
     width: 25%;
     height: 30%;

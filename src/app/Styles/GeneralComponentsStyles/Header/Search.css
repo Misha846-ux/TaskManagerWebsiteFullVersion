@@ -9,13 +9,13 @@
     border-radius: 15px;
     padding: 0 45px 0 15px;
     background-color: rgb(224, 219, 219);
-    border: none;
+    border: 2px black solid;
     outline: none;
 }
 .search_button{
     position: absolute;
     left: 102%;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
     width: 10%;
     height: 90%;
@@ -26,4 +26,8 @@
     background-size: 16px;
     background-repeat: no-repeat;
     background-position: center;
+}
+.search_button:hover{
+    border: 2px solid gray;
+    border-radius: 50%;
 }
