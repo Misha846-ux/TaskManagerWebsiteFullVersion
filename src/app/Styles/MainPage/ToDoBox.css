@@ -1,0 +1,39 @@
+.ToDoCell {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  margin: 1%;
+  border-radius: 15px;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.ToDoCell_name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ToDoCell_deadline {
+  justify-self: start;
+  font-size: 14px;
+  color: #666;
+}
+
+.ToDoCell_priority {
+  justify-self: end;
+  font-size: 14px;
+  color: #333;
+  margin-right: 8px;
+}
+
+.ToDoCell .actions-menu-wrapper {
+  justify-self: end;
+}

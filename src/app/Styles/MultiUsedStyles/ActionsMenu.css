@@ -1,6 +1,7 @@
 .actions-menu-wrapper {
   position: relative;
   display: inline-block;
+  z-index: 9999;
 }
 
 .actions-menu-button {
@@ -29,6 +30,7 @@
   min-width: 120px;
   opacity: 1;
   transition: opacity 0.2s;
+  z-index: 9999;
 }
 
 .actions-menu-item {
@@ -45,4 +47,16 @@
 
 .actions-menu-item:hover {
   background-color: #f0f0f0;
+}
+
+/* Portal wrapper: when menu is rendered into body, override right/top positioning */
+.actions-menu-portal {
+  position: absolute;
+  z-index: 10000;
+}
+
+.actions-menu-portal .actions-menu {
+  right: 0;
+  top: 0;
+  left: auto;
 }

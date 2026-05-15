@@ -12,8 +12,6 @@ const LoginIn = () => {
         try{
             login(value).then(() => {
                 getMyCompanies().then((data) => {
-                    console.log(data);
-                    console.log(data[0].id);
                     refreshAccessToken(data[0].id).then((accesToken) => {
                         setAccessToken(accesToken);
                         setCompanyId(data[0].id);

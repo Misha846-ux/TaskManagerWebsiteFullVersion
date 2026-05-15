@@ -1,32 +1,47 @@
 import ScrolShell from "../../MultiUsedParts/ScrolShell"
 import MemberAddMenu from "./MemberAddMenu.tsx";
 import type { UserGet } from "../../../../Domain/User";
-import { getUserAvatar, getUserById } from "../../../../Infrastructure/ControllersMethods/UserControllerMethods";
+import "../../../Styles/MainPage/MembersBox.css";
+import { getUserAvatar, getUserByEmail, getUserById } from "../../../../Infrastructure/ControllersMethods/UserControllerMethods";
 import defaultAvatar from "../../../../Images/profile_image.jpeg";
 import { useEffect, useState } from "react";
 import { getCompanyId } from "../../../../Infrastructure/LocalStorageMethods.ts";
-import { getCompanyUsers } from "../../../../Infrastructure/ControllersMethods/CompanyControllerMethods.ts";
+import { getCompanyUsers, updateCompanyUser } from "../../../../Infrastructure/ControllersMethods/CompanyControllerMethods.ts";
+import type { CompanyOfUserUpdate } from "../../../../Domain/Company/CompanyOfUserUpdate.ts";
 
 const MembersBox = () => {
     const [users, setUsers] = useState<UserGet[]>([]);
     const [isCreateMenuOpen, setIsCreateMenuOpen] = useState<boolean>(false);
+    const [updateKey, setUpdateKey] = useState<boolean>(false);
 
     useEffect(() => {
         getCompanyUsers(getCompanyId()).then((data) => {
           data.map(d => {
-            getUserById(d.id).then(user => {
+            getUserById(d.userId as number).then(user => {
               setUsers(prev => [...prev, user]);
             });
           })
         });
-    },[]);
+    },[updateKey]);
+
+    function onAddMember(email: string, role: number): void{
+      getUserByEmail(email).then(user => {
+        let newcompanyUser: CompanyOfUserUpdate = {
+          id: 0,
+          companyId: getCompanyId(),
+          userId: user.id,
+          companyRole: role
+        }
+      updateCompanyUser(newcompanyUser).then(() => {setUpdateKey(prev => !prev);});
+      });
+    }
 
     return (
         <>
             <MemberAddMenu
                 isOpen={isCreateMenuOpen}
                 onClose={() => setIsCreateMenuOpen(false)}
-                onSubmit={() => {}}
+                onSubmit={(data) => onAddMember(data.email, data.role)}
                 title="Add Member"
                 buttonText="Add user"
                 emailLabel="Email"
