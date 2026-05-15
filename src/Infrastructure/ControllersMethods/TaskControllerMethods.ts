@@ -25,6 +25,34 @@ export async function getAllTasksAdmin(): Promise<TaskGet[]> {
     return data;
 }
 
+export async function getTasksByProject(projectId: number): Promise<TaskGet[]> {
+    try{
+        const response = await fetch(`${API_URL}/GetByProjectId/${projectId}`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${getAccessToken()}`
+            },
+            credentials: "include",
+        }
+        )
+        if(response.status === 404) {
+            throw new Error("Task not found");
+        }
+
+        let data: TaskGet[] = await response.json();
+        data.map(d => {
+            d.createdAt = new Date(d.createdAt);
+            d.deadLine = new Date(d.deadLine);
+        })
+
+        return data;
+    }
+    catch(error) {
+        return [];
+    }
+}
+
 export async function getAllTasksPaginated(count: number, side: number): Promise<TaskGet[]> {
     const response = await fetch(`${API_URL}/Filtred?count=${count}&side=${side}`,
         {
@@ -88,6 +116,34 @@ export async function getTasksByNamePaginated(
     })
 
     return data;
+}
+
+export async function getTasksByUserId(userId: number): Promise<TaskGet[]> {
+    try{
+        const response = await fetch(`${API_URL}/user/GetAllById/${userId}`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${getAccessToken()}`
+            },
+            credentials: "include",
+        }
+        )
+        if(response.status === 404) {
+            throw new Error("Task not found");
+        }
+
+        let data: TaskGet[] = await response.json();
+        data.map(d => {
+            d.createdAt = new Date(d.createdAt);
+            d.deadLine = new Date(d.deadLine);
+        })
+
+        return data;
+    }
+    catch(error) {
+        return [];
+    }
 }
 
 export async function getTaskByIdAdmin(id: number): Promise<TaskGet> {

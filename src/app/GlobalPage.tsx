@@ -6,17 +6,21 @@ import { Outlet } from 'react-router-dom';
 
 const GlobalPage = () => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const [updateKey, setUpdateKey] = useState<boolean>(false);
     function sideBareButtonClick(): void {
         setIsOpen(!isOpen);
     }
+
+    window.addEventListener("companyChanged", () => {
+        setUpdateKey(!updateKey);
+    });
 
     return (
         <div className={`MainPage ${isOpen ? "open" : ""}`}>
             <SideBar/>
             <div className="main">
                 <Header sideBareButtonClick={sideBareButtonClick}/>
-                <Outlet></Outlet>
+                <Outlet key={Number(updateKey)}></Outlet>
             </div>
         </div>
     )

@@ -1,0 +1,30 @@
+.Members_profile {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background-color: white;
+  margin: 1%;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+.Members_profile_image {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.Members_profile_name {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

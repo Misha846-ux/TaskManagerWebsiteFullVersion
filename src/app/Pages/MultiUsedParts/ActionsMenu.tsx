@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import '../../Styles/MultiUsedStyles/ActionsMenu.css';
 
 interface ExtraAction {
@@ -24,6 +25,9 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const [portalStyle, setPortalStyle] = useState<{ top: number; left: number } | null>(null);
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -36,6 +40,10 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
       timeoutRef.current = null;
     }
     setIsOpen(true);
+    if (wrapperRef.current) {
+      const r = wrapperRef.current.getBoundingClientRect();
+      setPortalStyle({ top: r.bottom + window.scrollY, left: r.left + window.scrollX });
+    }
   };
 
   const handleMouseLeave = () => {
@@ -50,14 +58,47 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
   ) => {
     e.preventDefault();
     e.stopPropagation();
-
     callback?.(entityId);
     setIsOpen(false);
   };
 
+  const menuContent = (
+    <div
+      className="actions-menu"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      role="menu"
+    >
+      {onUpdate && (
+        <button className="actions-menu-item" onClick={(e) => handleClick(e, onUpdate)}>
+          Update
+        </button>
+      )}
+
+      {onDelete && (
+        <button className="actions-menu-item" onClick={(e) => handleClick(e, onDelete)}>
+          Delete
+        </button>
+      )}
+
+      {onManageMembers && (
+        <button className="actions-menu-item" onClick={(e) => handleClick(e, onManageMembers)}>
+          Manage members
+        </button>
+      )}
+
+      {extraActions.map((item, i) => (
+        <button key={i} className="actions-menu-item" onClick={(e) => handleClick(e, item.action)}>
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <div
       className="actions-menu-wrapper"
+      ref={wrapperRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -65,48 +106,17 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
         ⋯
       </button>
 
-      {isOpen && (
-        <div className="actions-menu">
-
-          {onUpdate && (
-            <button
-              className="actions-menu-item"
-              onClick={(e) => handleClick(e, onUpdate)}
+      {isOpen && portalStyle
+        ? createPortal(
+            <div
+              className="actions-menu-portal"
+              style={{ position: 'absolute', top: portalStyle.top, left: portalStyle.left, zIndex: 10000 }}
             >
-              Update
-            </button>
-          )}
-
-          {onDelete && (
-            <button
-              className="actions-menu-item"
-              onClick={(e) => handleClick(e, onDelete)}
-            >
-              Delete
-            </button>
-          )}
-
-          {onManageMembers && (
-            <button
-              className="actions-menu-item"
-              onClick={(e) => handleClick(e, onManageMembers)}
-            >
-              Manage members
-            </button>
-          )}
-
-          {extraActions.map((item, i) => (
-            <button
-              key={i}
-              className="actions-menu-item"
-              onClick={(e) => handleClick(e, item.action)}
-            >
-              {item.label}
-            </button>
-          ))}
-
-        </div>
-      )}
+              {menuContent}
+            </div>,
+            document.body
+          )
+        : null}
     </div>
   );
 };
