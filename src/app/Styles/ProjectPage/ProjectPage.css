@@ -1,0 +1,8 @@
+.ProjectPage{
+    background-color: rgb(238, 232, 232);
+    height: 98%;
+    border-radius: 15px;
+    min-width: 1330px;
+    display: flex;
+    flex-direction: row;
+}
