@@ -5,7 +5,6 @@ import TasksCard from "../../MultiUsedParts/TasksCard"
 const FirstColumm = () => {
     return (
         <div className="FirstColumm">
-            <div className="FirstColummHeading">Project schedule</div>
             <div className="Task_Calendar">
                 <Calendar />
             </div>

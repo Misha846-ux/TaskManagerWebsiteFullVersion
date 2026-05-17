@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../../../Styles/MainPage/Timer.css";
+import "../../Styles/MultiUsedStyles/Timer.css";
 
 const Timer: React.FC = () => {
     const getDate = (): string => {

@@ -2,7 +2,7 @@ import "../../Styles/MainPage/MainPage.css"
 import FourthLine from "./Components/FourthLine";
 import SecondLine from "./Components/SecondLine";
 import ThirdLine from "./Components/ThirdLine";
-import Timer from "./Components/Timer";
+import Timer from "../MultiUsedParts/Timer";
 
 const MainPage = () => {
     return (
