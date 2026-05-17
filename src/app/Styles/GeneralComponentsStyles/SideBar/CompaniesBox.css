@@ -17,19 +17,20 @@
 .Company {
   color: gray;
   border: 3px solid black;
-  width: 80%;
-  height: 13%;
-  margin-left: 10%;
+  width: 85%;
+  height: auto;
+  margin-left: 5%;
   margin-top: 5%;
   font-size: 20px;
   border-radius: 20px;
-  overflow-x: hidden;
+  overflow: visible;
   min-width: 0;
 }
 
 .Company_top {
   width: 100%;
   height: 20%;
+  margin-left: 2%;
 }
 
 .Company_profile {
@@ -41,18 +42,14 @@
 
 .Company_name {
   width: 60%;
+  margin-left: 2%;
   color: black;
   font-size: 20px;
-  margin-top: 5%;
   margin-right: 10%;
   height: 70%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
   display: flex;
   align-items: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  flex-wrap: wrap;
 }
 
 .Company_img {
@@ -82,7 +79,7 @@
 .create_box {
   width: 30%;
   height: 30%;
-  background-color: rgb(221, 217, 217);
+  background-color: rgb(175, 170, 170);
   border-radius: 20px;
   position: fixed;
   z-index: 9999;
