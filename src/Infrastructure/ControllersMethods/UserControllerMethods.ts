@@ -1,207 +1,182 @@
 import type { UserUpdate, AvatarPut, UserGet } from "../../Domain/User";
-import { getAccessToken } from "../LocalStorageMethods";
+import { api } from "../ErrorHandler";
 
 const API_URL = import.meta.env.VITE_API_URL + "/User";
 
 export async function getAllUsers(): Promise<UserGet[]> {
-    const response = await fetch(`${API_URL}`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-        },
-        credentials: "include",
-    })
 
-    let data: UserGet[] = await response.json();
-    data.map(d => d.createdAt = new Date(d.createdAt))
+    const response = await api.get<UserGet[]>(API_URL);
 
-    return data
+    const data = response.data;
+
+    data.forEach(d => {
+        d.createdAt = new Date(d.createdAt);
+    });
+
+    return data;
 }
+
+
 
 export async function getUsersPaginated(count: number, side: number): Promise<UserGet[]> {
-    const response = await fetch(
-        `${API_URL}/Filtred?count=${count}&side=${side}`,
+
+    const response = await api.get<UserGet[]>(`${API_URL}/Filtred`,
         {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${getAccessToken()}`,
-            },
-            credentials: "include",
+            params: {
+                count,
+                side
+            }
         }
-    )
+    );
 
-    let data: UserGet[] = await response.json();
-    data.map(d => d.createdAt = new Date(d.createdAt))
+    const data = response.data;
 
-    return data
+    data.forEach(d => {
+        d.createdAt = new Date(d.createdAt);
+    });
+
+    return data;
 }
 
-export async function searchUsersByNamePaginated
-(name: string, count: number, side: number): Promise<UserGet[]> {
-    const response = await fetch(
-        `${API_URL}/Filtred/SearchByName?name=${encodeURIComponent(name)}&count=${count}&side=${side}`,
+
+
+export async function searchUsersByNamePaginated(name: string, count: number,
+    side: number): Promise<UserGet[]> {
+
+    const response = await api.get<UserGet[]>(`${API_URL}/Filtred/SearchByName`,
         {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${getAccessToken()}`,
-            },
-            credentials: "include",
+            params: {
+                name,
+                count,
+                side
+            }
         }
-    )
+    );
 
-    let data: UserGet[] = await response.json();
-    data.map(d => d.createdAt = new Date(d.createdAt))
+    const data = response.data;
 
-    return data
+    data.forEach(d => {
+        d.createdAt = new Date(d.createdAt);
+    });
+
+    return data;
 }
+
+
 
 export async function searchUsersByName(name: string): Promise<UserGet[]> {
-    const response = await fetch(`${API_URL}/SearchByName/${encodeURIComponent(name)}`,
-        {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${getAccessToken()}`,
-            },
-            credentials: "include",
-        }
-    )
 
-    let data: UserGet[] = await response.json();
-    data.map(d => d.createdAt = new Date(d.createdAt))
+    const response = await api.get<UserGet[]>(`${API_URL}/SearchByName/${encodeURIComponent(name)}`);
 
-    return data
+    const data = response.data;
+
+    data.forEach(d => {
+        d.createdAt = new Date(d.createdAt);
+    });
+
+    return data;
 }
+
+
 
 export async function getUserById(id: number): Promise<UserGet> {
-    const response = await fetch(`${API_URL}/ById/${id}`, {
-        method: "GET",
-        headers: {
-                Authorization: `Bearer ${getAccessToken()}`,
-            },
-        credentials: "include",
-    })
 
-    let data: UserGet = await response.json();
-    data.createdAt = new Date(data.createdAt)
+    const response = await api.get<UserGet>(`${API_URL}/ById/${id}`);
 
-    return data
+    const data = response.data;
+
+    data.createdAt = new Date(data.createdAt);
+
+    return data;
 }
+
+
 
 export async function getUserByEmail(email: string): Promise<UserGet> {
-    const response = await fetch(`${API_URL}/ByEmail/${encodeURIComponent(email)}`,
-        {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${getAccessToken()}`,
-            },
-            credentials: "include",
-        }
-    )
 
-    let data: UserGet = await response.json();
+    const response = await api.get<UserGet>(`${API_URL}/ByEmail/${encodeURIComponent(email)}`);
 
-    return data
+    return response.data;
 }
+
+
 
 export async function getMe(): Promise<UserGet> {
-    const response = await fetch(`${API_URL}/Get/Myself`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-        },
-        credentials: "include",
-    })
 
-    let data: UserGet = await response.json();
-    data.createdAt = new Date(data.createdAt)
+    const response = await api.get<UserGet>(`${API_URL}/Get/Myself`);
 
-    return data
+    const data = response.data;
+
+    data.createdAt = new Date(data.createdAt);
+
+    return data;
 }
+
+
 
 export async function getUserAvatar(id: number): Promise<Blob> {
-    const response = await fetch(`${API_URL}/Get/Avatar/${id}`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-        },
-        credentials: "include",
-    })
 
-    if (!response.ok) {
-        throw new Error(`Failed to load user avatar: ${response.status}`);
-    }
+    const response = await api.get(`${API_URL}/Get/Avatar/${id}`,
+        {
+            responseType: "blob"
+        }
+    );
 
-    return await response.blob();
+    return response.data;
 }
+
+
 
 export async function deleteUserByAdmin(id: number): Promise<number> {
-    const response = await fetch(`${API_URL}/DeleteForAdmin/${id}`, {
-        method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-        },
-        credentials: "include",
-    })
 
-    let data: number = await response.json()
+    const response = await api.delete<number>(`${API_URL}/DeleteForAdmin/${id}`);
 
-    return data
+    return response.data;
 }
 
-export async function deleteMe() {
-    const response = await fetch(`${API_URL}/Delete`, {
-        method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-        },
-        credentials: "include",
-    })
+
+
+export async function deleteMe(): Promise<void> {
+
+    await api.delete(`${API_URL}/Delete`);
 }
+
+
 
 export async function updateUserByAdmin(user: UserUpdate): Promise<UserGet> {
-    const response = await fetch(`${API_URL}/UpdateForAdmin`, {
-        method: "PUT",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-            "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(user),
-    })
 
-    let data: UserGet = await response.json();
-    data.createdAt = new Date(data.createdAt)
+    const response = await api.put<UserGet>(`${API_URL}/UpdateForAdmin`, user);
 
-    return data
+    const data = response.data;
+
+    data.createdAt = new Date(data.createdAt);
+
+    return data;
 }
+
+
 
 export async function updateMe(user: UserUpdate): Promise<UserGet> {
-    const response = await fetch(`${API_URL}/Update`, {
-        method: "PUT",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-            "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(user),
-    })
-    
-    let data: UserGet = await response.json();
-    data.createdAt = new Date(data.createdAt)
-    
-    return data
+
+    const response = await api.put<UserGet>(`${API_URL}/Update`, user);
+
+    const data = response.data;
+
+    data.createdAt = new Date(data.createdAt);
+
+    return data;
 }
 
-export async function updateAvatar(avatar: AvatarPut){
-    const formData = new FormData()
-    formData.append("userAvata", avatar.userAvata)
 
-    const response = await fetch(`${API_URL}/Update/UserAvatar`, {
-        method: "PUT",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`
-        },
-        credentials: "include",
-        body: formData,
-    })
+
+export async function updateAvatar(avatar: AvatarPut): Promise<void> {
+
+    const formData = new FormData();
+
+    formData.append(
+        "userAvata",
+        avatar.userAvata
+    );
+
+    await api.put(`${API_URL}/Update/UserAvatar`, formData);
 }

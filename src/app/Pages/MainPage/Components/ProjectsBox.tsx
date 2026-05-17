@@ -104,7 +104,7 @@ const ProjectCard = ({ project, updateKey, setUpdateKey }: ProjectCardProps) => 
             </div>
             <ActionsMenu
                 entityId={project.id}
-                onDelete={(value) => onDelete(project.id)}
+                onDelete={() => onDelete(project.id)}
                 onUpdate={() => {}}
             />
         </div>

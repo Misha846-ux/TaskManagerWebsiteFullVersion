@@ -1,52 +1,31 @@
 import type { ChangeType } from "../../Domain/Change/Change";
-import { getAccessToken } from "../LocalStorageMethods";
+import { api } from "../ErrorHandler";
 
 const API_URL = import.meta.env.VITE_API_URL + "/Change";
 
 export async function getChanges(): Promise<ChangeType[]> {
-    const response = await fetch(`${API_URL}`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`
-        },
-        credentials: "include",
-    })
-
-    let data: ChangeType[] = await response.json();
-
-    return data;
+    const response = await api.get<ChangeType[]>(API_URL)
+    return response.data;
 }
 
 export async function getUnreadChanges(): Promise<ChangeType[]> {
 
-    const response = await fetch(`${API_URL}/unread`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${getAccessToken()}`
-        },
-        credentials: "include",
-    })
+    const response = await api.get<ChangeType[]>(`${API_URL}/unread`);
 
-    let data: ChangeType[] = await response.json();
-
-    return data;
+    return response.data;
 }
 
-export async function getChangesPaginated(
-    count: number, side: number): Promise<ChangeType[]> {
 
-    const response = await fetch(
-        `${API_URL}/paginated?count=${count}&side=${side}`,
+
+export async function getChangesPaginated(count: number, side: number): Promise<ChangeType[]> {
+    const response = await api.get<ChangeType[]>(`${API_URL}/paginated`,
         {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${getAccessToken()}`
-            },
-            credentials: "include",
+            params: {
+                count,
+                side
+            }
         }
-    )
+    );
 
-    let data: ChangeType[] = await response.json();
-
-    return data;
+    return response.data;
 }
