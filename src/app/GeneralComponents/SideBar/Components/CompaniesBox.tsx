@@ -79,7 +79,7 @@ const CompanyCard = ({company}: CompanyCardProps) => {
         refreshAccessToken(companyId).then((value) => {
             setAccessToken(value);
         });
-
+        navigator("/MainPage/MainContent")
         window.dispatchEvent(new Event("companyChanged"));
     }
 

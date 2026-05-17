@@ -7,6 +7,7 @@ import "../../../Styles/MainPage/ProjectsBox.css"
 import OneInputMenu from "../../MultiUsedParts/OneInputMenu";
 import ActionsMenu from "../../MultiUsedParts/ActionsMenu";
 import { getTasksByProject } from "../../../../Infrastructure/ControllersMethods/TaskControllerMethods";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -62,6 +63,7 @@ type ProjectCardProps = {
 }
 
 const ProjectCard = ({ project, updateKey, setUpdateKey }: ProjectCardProps) => {
+    const navigator = useNavigate();
     const [percent, setPercent] = useState<number>(0);
 
     useEffect(() => {
@@ -76,7 +78,9 @@ const ProjectCard = ({ project, updateKey, setUpdateKey }: ProjectCardProps) => 
         });
     },[]);
 
-    
+    function onProject(){
+        navigator(`/MainPage/ProjectPage/${project.id}`)
+    }
 
     function onDelete(projectId: number){
         deleteMyProject(projectId).then(() => {
@@ -88,7 +92,7 @@ const ProjectCard = ({ project, updateKey, setUpdateKey }: ProjectCardProps) => 
             <button
                 className="TO_DOES_Project_button"
                 type="button"
-                onClick={() => {}}
+                onClick={onProject}
             />
             <div className="TO_DOES_Project_name"><b>{project.title}</b></div>
             <div className="TO_DOES_Project_percent">{percent}%</div>
