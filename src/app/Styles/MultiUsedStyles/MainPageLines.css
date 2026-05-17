@@ -1,12 +1,72 @@
-.Line{
-    height: 30%;
+.Line {
     width: 100%;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
-.HalfLine{
-    height: 100%;
+.HalfLine {
     width: 50%;
     display: flex;
-    flex-direction:row;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* SecondLine-specific layout: calendar + task cards on the left, Project Worked on the right */
+.MainPage_rest > .Line:nth-child(2) {
+    gap: 24px;
+}
+.MainPage_rest > .Line:nth-child(2) > .HalfLine:first-child {
+    flex: 0 0 32%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+.MainPage_rest > .Line:nth-child(2) > .HalfLine:first-child > div:first-child {
+    flex: 0 0 56%;
+    max-width: 56%;
+}
+.MainPage_rest > .Line:nth-child(2) > .HalfLine:first-child > div:last-child {
+    flex: 0 0 30%;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+}
+.MainPage_rest > .Line:nth-child(2) > .HalfLine:first-child > div:last-child .taskCardStyle {
+    width: 100%;
+    max-width: 100%;
+}
+.MainPage_rest > .Line:nth-child(2) > .HalfLine:last-child {
+    flex: 0 0 40%;
+    min-width: 280px;
+}
+
+@media (max-width: 1200px) {
+    .MainPage_rest > .Line:nth-child(2) > .HalfLine:first-child,
+    .MainPage_rest > .Line:nth-child(2) > .HalfLine:last-child {
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+    }
+    .MainPage_rest > .Line:nth-child(2) > .HalfLine:first-child {
+        flex-direction: column;
+    }
+    .MainPage_rest > .Line:nth-child(2) > .HalfLine:first-child > div:last-child {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    .Line {
+        flex-wrap: wrap;
+    }
+    .HalfLine {
+        width: 100%;
+    }
 }
