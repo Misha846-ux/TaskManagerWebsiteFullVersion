@@ -9,6 +9,10 @@
     object-fit: contain;
     background-color: white;
 }
+.dash_button:hover{
+    border: 2px solid black;
+    border-radius: 15px;
+}
 .dashboard{
     font-size: 20px;
     margin: 15px;

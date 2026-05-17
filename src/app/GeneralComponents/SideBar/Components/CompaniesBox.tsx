@@ -7,7 +7,7 @@ import { getCompanyId, setAccessToken, setCompanyId } from '../../../../Infrastr
 import { useNavigate } from 'react-router-dom';
 import { refreshAccessToken } from '../../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods';
 import OneInputMenu from '../../../Pages/MultiUsedParts/OneInputMenu';
-
+import companyImg from '../../../../Images/company_img.png';
 
 const CompaniesBox = () => {
   const [companies, setCompanies] = useState<CompanyGet[]>([]);
@@ -125,7 +125,7 @@ const CompanyCard = ({company}: CompanyCardProps) => {
                     <b>{company.name}</b>
                 </div>
                 <div className="Company_img" onClick={() => onCompanyClick(company.id)}>
-                    <img className="comp_img" src="/company_img.png" alt="Company" />
+                    <img className="comp_img" src={companyImg} alt="Company" />
                 </div>
             </div>
         </div>

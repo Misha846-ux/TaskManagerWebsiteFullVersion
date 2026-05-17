@@ -75,7 +75,7 @@
 }
 
 .create-input {
-  width: 100%;
+  width: 90%;
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -86,9 +86,10 @@
 
 .create-button {
   height: 44px;
-  width: 100%;
+  width: 90%;
   background-color: rgb(255, 192, 45);
   font-size: 18px;
+  margin-left: 4%;
   border-radius: 12px;
   margin-bottom: 10px;
   border: none;

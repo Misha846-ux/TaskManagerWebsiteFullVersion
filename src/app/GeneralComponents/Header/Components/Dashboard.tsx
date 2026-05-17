@@ -10,7 +10,7 @@ const Dashboard: React.FC<DashboardProps> = ({ sideBareButtonClick }) => {
         <>
             <button type="button" onClick={sideBareButtonClick} className="dash_button"></button>
             <NavLink to="/MainPage/MainContent" className="dashboard">
-                <b>TaskWebSite</b>
+                <b>TaskFlow</b>
             </NavLink>
         </>
     );
