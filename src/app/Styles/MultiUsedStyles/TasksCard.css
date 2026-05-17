@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 150px;
     min-height: 135px;
-    margin: 0 auto 16px;
+    margin: 0 auto;
     border-radius: 12px;
     background: linear-gradient(135deg, #ffd194, #ffb547);
     display: flex;

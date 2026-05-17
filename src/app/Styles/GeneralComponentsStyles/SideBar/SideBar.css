@@ -3,7 +3,6 @@
 }
 
 .sidebar {
-  overflow: hidden;
   background: white;
   color: #222;
   min-height: 900px;
@@ -22,7 +21,7 @@
 .Logo_img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: contain;;
 }
 
 .LogOut_button {

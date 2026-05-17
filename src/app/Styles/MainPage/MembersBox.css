@@ -1,6 +1,6 @@
 .Members_profile {
-  width: 100%;
-  height: 60px;
+  width: 98%;
+  height: 40%;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -21,10 +21,11 @@
 }
 
 .Members_profile_name {
-  flex: 1;
-  font-size: 14px;
+  flex: 0 0 60%;
+  font-size: 20px;
   line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  
 }

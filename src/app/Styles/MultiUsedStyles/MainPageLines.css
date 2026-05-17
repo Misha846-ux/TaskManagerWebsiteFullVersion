@@ -4,6 +4,7 @@
     flex-direction: row;
     justify-content: space-between;
     box-sizing: border-box;
+    margin-bottom: 2%;
 }
 .HalfLine {
     width: 50%;
