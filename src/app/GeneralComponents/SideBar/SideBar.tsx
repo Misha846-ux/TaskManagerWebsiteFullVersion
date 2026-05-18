@@ -2,13 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import CompaniesBox from './Components/CompaniesBox.tsx';
 import '../../Styles/GeneralComponentsStyles/SideBar/SideBar.css';
 import img from "../../../Images/logo.png";
+import { LogOut } from '../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods.ts';
 
 const SideBar = () => {
   const navigator = useNavigate();
 
   const OnClick = () => {
-    localStorage.clear();
-    navigator('/');
+    LogOut().then(() => {
+      localStorage.clear();
+      navigator('/');
+    });
   };
 
   return (

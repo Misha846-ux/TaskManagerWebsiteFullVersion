@@ -87,3 +87,10 @@ export async function getMyCompanies(): Promise<CompanyGet[]> {
     return data;
 }
 
+export async function LogOut(): Promise<void> {
+    const response = await fetch(`${API_URL}/LogOut`, {
+        method: "DELETE",
+        credentials: "include", 
+    });
+}
+

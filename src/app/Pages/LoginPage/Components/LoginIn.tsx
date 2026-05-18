@@ -10,15 +10,23 @@ const LoginIn = () => {
 
     function OnFormClick(value: UserLogin): void{
         try{
-            login(value).then(() => {
-                getMyCompanies().then((data) => {
-                    refreshAccessToken(data[0].id).then((accesToken) => {
-                        setAccessToken(accesToken);
-                        setCompanyId(data[0].id);
-                        changeIsAuthorize();
-                        navigator("/MainPage/MainContent")
+            login(value).then((value) => {
+                if(value){
+                    getMyCompanies().then((data) => {
+                        refreshAccessToken(data[0].id).then((accesToken) => {
+                            setAccessToken(accesToken);
+                            setCompanyId(data[0].id);
+                            changeIsAuthorize();
+                            navigator("/MainPage/MainContent")
+                        });
                     });
-                });
+                }
+                else{
+                    throw new Error();
+                }
+                
+            }).catch(() => {
+                alert("Faild to login");
             });
         }
         catch{

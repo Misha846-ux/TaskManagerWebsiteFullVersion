@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../Styles/LoginPage/ForgotPassword.css";
 import UserDataInput from "./UserDataInput";
-import type { UserLogin } from "../../../../Domain/User";
+import type { UserLogin, UserUpdate } from "../../../../Domain/User";
 import {
   forgotPassword,
   loginWithRecoveryToken,
@@ -10,6 +10,7 @@ import {
   refreshAccessToken,
 } from "../../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods";
 import { changeIsAuthorize, setAccessToken, setCompanyId } from "../../../../Infrastructure/LocalStorageMethods";
+import { getMe, updateMe } from "../../../../Infrastructure/ControllersMethods/UserControllerMethods";
 
 
 const ForgotPassword = () => {
@@ -17,6 +18,7 @@ const ForgotPassword = () => {
 
   const [email, setEmail] = useState("");
   const [step, setStep] = useState(1); 
+  const [newpassword, setNewPassword] = useState<string>("");
 
   const handleGetToken = async () => {
     try {
@@ -37,7 +39,7 @@ const ForgotPassword = () => {
             setAccessToken(accesToken);
             setCompanyId(data[0].id);
             changeIsAuthorize();
-            navigate("/MainPage/MainContent")
+            setStep(3);
           });
         });
       });
@@ -45,6 +47,19 @@ const ForgotPassword = () => {
     catch (e){
       alert(e);
     }
+  }
+
+  function onThirdStepClick(): void{
+    getMe().then((me) => {
+      let newUser: UserUpdate = {
+        id: me.id,
+        password: newpassword
+      }
+
+      updateMe(newUser).then(() => {
+        navigate("/MainPage/MainContent");
+      })
+    })
   }
 
   return (
@@ -71,6 +86,23 @@ const ForgotPassword = () => {
 
       {step === 2 && (
         <UserDataInput title="Login With RecoveryToken" onFormButtonClick={onSecondStepClick}></UserDataInput>
+      )}
+
+      {step === 3 && (
+        <>
+        <label className="lable">New password</label>
+          <input 
+          className="input"
+            type="Text"
+            placeholder="password"
+            value={newpassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+
+          <button className="GetToken_button" onClick={onThirdStepClick}>
+            Update password
+          </button>
+        </>
       )}
       </div>
     </div>

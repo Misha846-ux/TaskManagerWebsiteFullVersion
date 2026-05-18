@@ -1,10 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { getIsAuthorize } from "./Infrastructure/LocalStorageMethods";
 
 export default function ProtectedRoute() {
-const isAuth = localStorage.getItem("isAuth") === "true";
+const isAuth = getIsAuthorize();
 
-return true ? <Outlet/> : <Navigate to="/" />;
+return isAuth ? <Outlet/> : <Navigate to="/" />;
 }
