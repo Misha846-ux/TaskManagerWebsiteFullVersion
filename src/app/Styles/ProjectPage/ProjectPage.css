@@ -1,10 +1,12 @@
 .ProjectPage{
     background-color: rgb(238, 232, 232);
-    height: 98%;
+    width: 100%;
+    min-width: 0;
     border-radius: 15px;
-    min-width: 1330px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    min-height: 0;
 }
 
 .FirstLine{
@@ -13,8 +15,22 @@
 }
 
 .SecondLine{
-    height: 90%;
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+}
+
+@media (max-width: 1200px) {
+    .ProjectPage {
+        padding: 0 12px;
+    }
+    .SecondLine {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
