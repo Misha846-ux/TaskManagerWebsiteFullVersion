@@ -52,6 +52,7 @@
     border-radius: 15px;
     padding: 10px;
     box-sizing: border-box;
+    justify-content: space-evenly;
 }
 .TO_DOES_Project_button{
     height: 40px;
