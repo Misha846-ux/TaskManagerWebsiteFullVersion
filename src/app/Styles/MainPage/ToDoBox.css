@@ -1,14 +1,13 @@
 .ToDoCell {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr auto auto;
+  width: 98%;
+  height: 40%;
+  display: flex;
   align-items: center;
   gap: 12px;
-  height: 60px;
-  width: 100%;
+  padding: 8px 12px;
   background-color: white;
   margin: 1%;
   border-radius: 15px;
-  padding: 0 12px;
   box-sizing: border-box;
 }
 
