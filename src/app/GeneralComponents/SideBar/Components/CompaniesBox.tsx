@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ActionsMenu from '../../../Pages/MultiUsedParts/ActionsMenu';
 import '../../../Styles/GeneralComponentsStyles/SideBar/CompaniesBox.css';
 import { addCompany, deleteCompanyById, getMyCompanies, updateCompany } from '../../../../Infrastructure/ControllersMethods/CompanyControllerMethods';
-import { getCompanyId, setAccessToken, setCompanyId } from '../../../../Infrastructure/LocalStorageMethods';
+import { setAccessToken, setCompanyId } from '../../../../Infrastructure/LocalStorageMethods';
 import { useNavigate } from 'react-router-dom';
 import { refreshAccessToken } from '../../../../Infrastructure/ControllersMethods/AuthorizationControllerMethods';
 import OneInputMenu from '../../../Pages/MultiUsedParts/OneInputMenu';
@@ -12,11 +12,11 @@ import companyImg from '../../../../Images/company_img.png';
 const CompaniesBox = () => {
   const [companies, setCompanies] = useState<CompanyGet[]>([]);
   const [isCreateMenuOpen, setIsCreateMenuOpen] = useState<boolean>(false);
-  let companyId = getCompanyId();
+  const [updateKey, setUpdateKey] = useState<boolean>(false)
 
   useEffect(() => {
     getMyCompanies().then((data) => setCompanies(data));
-  }, [companyId]);
+  }, [updateKey]);
 
   function CreateCompany(companyName: string){
     setIsCreateMenuOpen(false);
@@ -47,7 +47,7 @@ const CompaniesBox = () => {
         onClick={() => setIsCreateMenuOpen(true)}>
         Create +
       </button>
-      <div className="Companies_list">
+      <div className="Companies_list" key={Number(updateKey)}>
         {!companies.length ? (
           <div className="No_companies">
             <b>No companies</b>
@@ -56,6 +56,8 @@ const CompaniesBox = () => {
           companies.map((company) => (
             <CompanyCard
               key={company.id}
+              setUpdateKey={setUpdateKey}
+              updateKey={updateKey}
               company={company}
             />
           ))
@@ -67,9 +69,11 @@ const CompaniesBox = () => {
 
 type CompanyCardProps = {
     company: CompanyGet;
+    updateKey: boolean
+    setUpdateKey: (value: boolean) => void
 }
 
-const CompanyCard = ({company}: CompanyCardProps) => {
+const CompanyCard = ({company, setUpdateKey, updateKey}: CompanyCardProps) => {
     const [isCreateMenuOpen, setIsCreateMenuOpen] = useState<boolean>(false);
     const navigator = useNavigate();
 
@@ -85,7 +89,9 @@ const CompanyCard = ({company}: CompanyCardProps) => {
 
     function onDeleteCompany(companyId: number): void {
       deleteCompanyById(companyId).then(() => {
-        setCompanyId(getCompanyId());
+        getMyCompanies().then((value) => {
+          setUpdateKey(!updateKey);
+        })
       });
     }
 
@@ -97,7 +103,9 @@ const CompanyCard = ({company}: CompanyCardProps) => {
       }
       setIsCreateMenuOpen(false);
       updateCompany(newCompany).then(() => {
-        setCompanyId(getCompanyId());
+        getMyCompanies().then((value) => {
+          setUpdateKey(!updateKey);
+        })
       });
     }
 
