@@ -1,11 +1,11 @@
 .Projects{
-    height: 30%;
+    height: auto;
     width: 98%;
-    margin-top: 1%;
+    margin-top: 6px;
     margin-left: 1%;
     display: flex;
     justify-content: center;
-    min-height: 230px;
+    min-height: 120px;
 }
 .Projects_background{
     background-color: white;
@@ -14,10 +14,10 @@
     border-radius: 15px;
 }
 .Projects_top{
-    font-size: 25px;
+    font-size: 16px;
     width: auto;
-    height: 10%;
-    margin: 1%;
+    height: auto;
+    margin: 6px;
     display: flex;
     align-items: center;
     position: relative;
@@ -35,30 +35,30 @@
   margin-left: 80%;
 }
 .Project_content{
-    height: 70%;
+    height: auto;
     width: auto;
     background-color: rgb(238, 232, 232);
-    margin: 1%;
+    margin: 6px;
     overflow-y: auto;
-    border-radius: 15px;
+    border-radius: 12px;
 }
 .TO_DOES_Project{
     display: flex;
     align-items: center;
-    height: 40%;
+    height: 48px;
     width: 98%;
     background-color: white;
-    margin: 1%;
-    border-radius: 15px;
-    padding: 10px;
+    margin: 6px;
+    border-radius: 12px;
+    padding: 8px;
     box-sizing: border-box;
     justify-content: space-evenly;
 }
 .TO_DOES_Project_button{
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-    border-radius: 25px;
+    height: 32px;
+    width: 32px;
+    margin-right: 8px;
+    border-radius: 20px;
     background-image: url("/src/Images/file_button.png");
     border: none;
     background-repeat: no-repeat;
@@ -68,8 +68,8 @@
     flex-shrink: 0;
 }
 .TO_DOES_Project_name{
-    font-size: 20px;
-    margin-right: 10px;
+    font-size: 14px;
+    margin-right: 8px;
     flex: 0 0 60%;
     overflow-x: auto;
     overflow-y: hidden;
@@ -82,19 +82,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 10px;
-    height: 40px;
-    width: 50px;
-    border-radius: 15px;
+    margin-right: 8px;
+    height: 28px;
+    width: 46px;
+    border-radius: 10px;
     background-color: rgb(255, 248, 232);
     flex-shrink: 0;
 }
 .TO_DOES_Project_percent_background_line{
-    height: 10px;
+    height: 8px;
     width: 25%;
-    margin-right: 10px;
+    margin-right: 8px;
     background-color: rgb(238, 232, 232);
-    border-radius: 15px;
+    border-radius: 10px;
     flex-shrink: 0;
     position: relative;
 }
@@ -102,7 +102,7 @@
     height: 100%;
     width: var(--percent);
     background-color: rgb(248, 211, 143);
-    border-radius: 15px;
+    border-radius: 10px;
     position: absolute;
     top: 0;
     left: 0;

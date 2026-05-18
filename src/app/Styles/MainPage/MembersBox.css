@@ -1,20 +1,20 @@
 .Members_profile {
   width: 98%;
-  height: 40%;
+  height: auto;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
+  gap: 8px;
+  padding: 6px 8px;
   background-color: white;
-  margin: 1%;
-  border-radius: 15px;
+  margin: 6px;
+  border-radius: 12px;
   box-sizing: border-box;
 }
 
 .Members_profile_image {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
@@ -22,10 +22,9 @@
 
 .Members_profile_name {
   flex: 0 0 60%;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
 }

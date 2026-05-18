@@ -1,18 +1,18 @@
 .ToDoCell {
   width: 98%;
-  height: 40%;
+  height: auto;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
+  gap: 8px;
+  padding: 6px 8px;
   background-color: white;
-  margin: 1%;
-  border-radius: 15px;
+  margin: 6px;
+  border-radius: 12px;
   box-sizing: border-box;
 }
 
 .ToDoCell_name {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #111;
   white-space: nowrap;
@@ -22,13 +22,13 @@
 
 .ToDoCell_deadline {
   justify-self: start;
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
 }
 
 .ToDoCell_priority {
   justify-self: end;
-  font-size: 14px;
+  font-size: 12px;
   color: #333;
   margin-right: 8px;
 }
