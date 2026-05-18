@@ -23,7 +23,7 @@ export async function getTasksByProject(projectId: number): Promise<TaskGet[]> {
 
     try {
 
-        const response = await api.get<TaskGet[]>(`${API_URL}/GetByProjectId/${projectId}`);
+        const response = await api.get<TaskGet[]>(`${API_URL}/GetByPojectId/${projectId}`);
 
         const data = response.data;
 

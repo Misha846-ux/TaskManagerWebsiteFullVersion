@@ -1,75 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../../../Styles/ProjectPage/TasksBox.css"
+import type { TaskGet } from "../../../../Domain/Task"
+import { getTasksByProject } from "../../../../Infrastructure/ControllersMethods/TaskControllerMethods"
+import { useParams } from "react-router-dom"
 
-type TaskStub = {
-    id: string
-    taskName: string
-    description: string
-    priority: string
-    due: string
-    completed: boolean
-}
-
-const placeholderTasks: TaskStub[] = [
-    {
-        id: "1",
-        taskName: "Design review",
-        description: "Review the project calendar and adjust the sprint plan.",
-        priority: "High",
-        due: "Today",
-        completed: false,
-    },
-    {
-        id: "2",
-        taskName: "Client sync",
-        description: "Prepare update slides and confirm next milestone.",
-        priority: "Medium",
-        due: "Tomorrow",
-        completed: false,
-    },
-    {
-        id: "3",
-        taskName: "Backend stub",
-        description: "Use placeholder data now, actual API will connect later.",
-        priority: "Low",
-        due: "This week",
-        completed: true,
-    },
-    {
-        id: "4",
-        taskName: "Update docs",
-        description: "Align the new project page layout with the old design.",
-        priority: "Medium",
-        due: "Friday",
-        completed: false,
-    },
-]
-
-const TaskCell = ({ task }: { task: TaskStub }) => {
-    return (
-        <div className={`task-item ${task.completed ? "task-completed" : ""}`}>
-            <div className="task-title">{task.taskName}</div>
-            <p className="task-meta">{task.description}</p>
-            <div className="task-row">
-                <span className="task-tag">{task.priority}</span>
-                <span className="task-due">{task.due}</span>
-            </div>
-            <div className="task-actions">
-                <button className="task-button">View</button>
-                <button className="task-button secondary">Complete</button>
-            </div>
-        </div>
-    )
-}
 
 const TasksBox = () => {
     const [filter, setFilter] = useState("All")
+    const [tasks, setTasks] = useState<TaskGet[]>([]);
+    const { id } = useParams();
 
-    const visibleTasks = placeholderTasks.filter((task) => {
-        if (filter === "Active") return !task.completed
-        if (filter === "Completed") return task.completed
-        return true
-    })
+    useEffect(()=>{
+        getTasksByProject(Number(id)).then((data) => {
+            setTasks(data);
+        })
+    },[])
+
 
     return (
         <div className="TasksBox">
@@ -77,7 +23,7 @@ const TasksBox = () => {
                 <div className="TasksBoxTitle">Tasks board</div>
                 <div className="TasksBoxControls">
                     <div className="TasksBoxButtons">
-                        {['All', 'Active', 'Completed'].map((label) => (
+                        {['All', 'Waiting', 'InProgress', 'Completed'].map((label) => (
                             <button
                                 key={label}
                                 type="button"
@@ -92,12 +38,42 @@ const TasksBox = () => {
                 </div>
             </div>
             <div className="TasksGrid">
-                {visibleTasks.map((task) => (
-                    <TaskCell key={task.id} task={task} />
-                ))}
+                {((tasks === undefined || null) || tasks.length == 0) ?
+                <div>No tasks</div> :
+                tasks.map((task) => {
+                    if (filter != "All" && task.status != filter){
+                        return null;
+                    }
+
+                    return (
+                        <TaskCell task={task}/>
+                    )
+                    
+                })}
             </div>
         </div>
     )
 }
 
 export default TasksBox;
+
+type TaskCellProperties = {
+    task: TaskGet
+}
+
+const TaskCell = ({ task }: TaskCellProperties) => {
+    return (
+        <div className={`task-item ${task.status == "Completed" ? "task-completed" : ""}`}>
+            <div className="task-title">{task.taskName}</div>
+            <p className="task-meta">{task.description}</p>
+            <div className="task-row">
+                <span className="task-tag">{task.priority}</span>
+                <span className="task-due">{task.deadLine.toLocaleDateString()}</span>
+            </div>
+            <div className="task-actions">
+                <button className="task-button">View</button>
+                <button className="task-button secondary">Complete</button>
+            </div>
+        </div>
+    )
+}

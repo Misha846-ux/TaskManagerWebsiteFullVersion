@@ -6,19 +6,22 @@ import { getUserAvatar, getUserByEmail, getUserById } from "../../../../Infrastr
 import defaultAvatar from "../../../../Images/profile_image.jpeg";
 import { useEffect, useState } from "react";
 import { getCompanyId } from "../../../../Infrastructure/LocalStorageMethods.ts";
-import { getCompanyUsers, updateCompanyUser } from "../../../../Infrastructure/ControllersMethods/CompanyControllerMethods.ts";
+import { deleteCompanyUserById, getCompanyUsers, updateCompanyUser } from "../../../../Infrastructure/ControllersMethods/CompanyControllerMethods.ts";
 import type { CompanyOfUserUpdate } from "../../../../Domain/Company/CompanyOfUserUpdate.ts";
+import ActionsMenu from "../../MultiUsedParts/ActionsMenu.tsx";
+import type { CompanyUserGet } from "../../../../Domain/Company/CompanyUserGet.ts";
 
 const MembersBox = () => {
-    const [users, setUsers] = useState<UserGet[]>([]);
+    const [users, setUsers] = useState<[UserGet, CompanyUserGet][] >([]);
     const [isCreateMenuOpen, setIsCreateMenuOpen] = useState<boolean>(false);
     const [updateKey, setUpdateKey] = useState<boolean>(false);
 
     useEffect(() => {
+      setUsers([]);
         getCompanyUsers(getCompanyId()).then((data) => {
           data.map(d => {
             getUserById(d.userId as number).then(user => {
-              setUsers(prev => [...prev, user]);
+              setUsers(prev => [...prev, [user, d]]);
             });
           })
         });
@@ -56,7 +59,8 @@ const MembersBox = () => {
                 {users.length === 0 || users === undefined || null ?
                     <div className="no_items">No members</div>
                     :
-                    users.map(user => <MemberCell key={user.id} user={user} />)
+                    users.map(user =>  <MemberCell key={user[1].id} user={user[0]} 
+                      updateKey={updateKey} setUpdateKey={setUpdateKey} companyUserId={user[1].id}/>)
                 }
             </ScrolShell>
         </>
@@ -67,10 +71,13 @@ const MembersBox = () => {
 export default MembersBox;
 
 type MemberCellProps = {
+  companyUserId: number;
   user: UserGet;
+  updateKey: boolean;
+  setUpdateKey: (value: boolean) => void;
 }
 
-const MemberCell = ({ user }: MemberCellProps) => {
+const MemberCell = ({ companyUserId, user, updateKey, setUpdateKey }: MemberCellProps) => {
 
   const [profileImg, setProfileImg] = useState<string>(defaultAvatar);
   useEffect(() => {
@@ -79,11 +86,23 @@ const MemberCell = ({ user }: MemberCellProps) => {
     }
   },[])
 
+  function onDelete(userComapnyId: number){
+    deleteCompanyUserById(userComapnyId).then(() => {
+      setUpdateKey(!updateKey);
+    })
+  }
+
   return (
     <div className="Members_profile" key={user.id}>
       <img className="Members_profile_image" src={profileImg} />
       <div className="Members_profile_name">
         {user.userName}
+      </div>
+      <div>
+        <ActionsMenu
+          entityId={companyUserId}
+          onDelete={() => {onDelete(companyUserId)}}
+        />
       </div>
     </div>
   )
