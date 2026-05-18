@@ -4,7 +4,7 @@
     border-radius: 15px;
     min-width: 1230px;
     padding: 24px 32px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 .Block1 {
     width: 100%;
